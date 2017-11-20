@@ -20,6 +20,8 @@
         <activity android:name=".CancelledClassessActivity" />
         <activity android:name=".FindTeacherActivity" />
         <activity android:name=".WeatherActivity"></activity>
+        <activity android:name=".AboutActivity" />
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>
