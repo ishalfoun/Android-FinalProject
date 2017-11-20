@@ -17,8 +17,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void launchCancellations(){
-        Intent cancellations = new Intent(MainActivity.this,CancelledClassesActivity.class);
-        startActivity(cancellations);
     }
 
     public void launchTeachers(){
@@ -42,11 +40,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void launchAbout(){
-
+        Intent openAbout = new Intent(MainActivity.this, AboutActivity.class);
+        startActivity(openAbout);
     }
 
     public void launchDawson(){
-
+        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.dawsoncollege.qc.ca/computer-science-technology/"));
+        startActivity(i);
     }
 
 
