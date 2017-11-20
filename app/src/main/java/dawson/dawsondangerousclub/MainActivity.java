@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,26 +18,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void launchCancellations(){
-    }
 
-    public void launchTeachers(){
-
-    }
-
-    public void launchCalendar(){
+    public void launchCancellations(View v){
+        Intent intent = new Intent(MainActivity.this,CancelledClassessActivity.class);
+        startActivity(intent);
 
     }
 
-    public void launchNotes(){
-
+    public void launchTeachers(View v){
+        Intent intent = new Intent(MainActivity.this,FindTeacherActivity.class);
+        startActivity(intent);
     }
 
-    public void launchWeather(){
-
+    public void launchCalendar(View v){
+        Intent intent = new Intent(MainActivity.this,CalendarActivity.class);
+        startActivity(intent);
     }
 
-    public void launchAcademicCalendar(){
+    public void launchNotes(View v){
+        Intent intent = new Intent(MainActivity.this,NotesActivity.class);
+        startActivity(intent);
+    }
 
+    public void launchWeather(View v){
+        Intent intent = new Intent(MainActivity.this,WeatherActivity.class);
+        startActivity(intent);
+    }
+
+    public void launchAcademicCalendar(View v){
     }
 
     public void launchAbout(){
@@ -47,6 +56,13 @@ public class MainActivity extends AppCompatActivity {
     public void launchDawson(){
         Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.dawsoncollege.qc.ca/computer-science-technology/"));
         startActivity(i);
+    public void launchAbout(View v){
+        Intent intent = new Intent(MainActivity.this,AboutActivity.class);
+        startActivity(intent);
+    }
+
+    public void launchDawson(View v){
+        
     }
 
 
