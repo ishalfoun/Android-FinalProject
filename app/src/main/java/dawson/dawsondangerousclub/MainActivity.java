@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,37 +17,41 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void launchCancellations(){
-        Intent cancellations = new Intent(MainActivity.this,CancelledClassesActivity.class);
-        startActivity(cancellations);
+    public void launchCancellations(View v){
+        Intent intent = new Intent(MainActivity.this,CancelledClassessActivity.class);
+        startActivity(intent);
     }
 
-    public void launchTeachers(){
-
+    public void launchTeachers(View v){
+        Intent intent = new Intent(MainActivity.this,FindTeacherActivity.class);
+        startActivity(intent);
     }
 
-    public void launchCalendar(){
-
+    public void launchCalendar(View v){
+        Intent intent = new Intent(MainActivity.this,CalendarActivity.class);
+        startActivity(intent);
     }
 
-    public void launchNotes(){
-
+    public void launchNotes(View v){
+        Intent intent = new Intent(MainActivity.this,NotesActivity.class);
+        startActivity(intent);
     }
 
-    public void launchWeather(){
-
+    public void launchWeather(View v){
+        Intent intent = new Intent(MainActivity.this,WeatherActivity.class);
+        startActivity(intent);
     }
 
-    public void launchAcademicCalendar(){
-
+    public void launchAcademicCalendar(View v){
     }
 
-    public void launchAbout(){
-
+    public void launchAbout(View v){
+        Intent intent = new Intent(MainActivity.this,AboutActivity.class);
+        startActivity(intent);
     }
 
-    public void launchDawson(){
-
+    public void launchDawson(View v){
+        
     }
 
 
