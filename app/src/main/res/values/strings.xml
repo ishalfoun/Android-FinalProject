@@ -3,4 +3,5 @@
     <string name="about_menu_item">About</string>
     <string name="dawson_menu_item">Dawson </string>
     <string name="settings_menu_item">Settings</string>
+    <string name="about_app">This line is supposed to talk about what our app does (TBD). \n \n By Issak Shalfoun, Jacob Riendeau, Theodore Acco-Thomas</string>
 </resources>
