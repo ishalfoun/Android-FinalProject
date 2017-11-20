@@ -6,9 +6,11 @@
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="match_parent"
-        android:layout_height="111dp"
-        app:srcCompat="@drawable/Dawson_EN_black" />
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/dawson" />
 
     <GridLayout
         android:layout_width="match_parent"
