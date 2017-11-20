@@ -17,9 +17,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    public void launchCancellations(){
+
     public void launchCancellations(View v){
         Intent intent = new Intent(MainActivity.this,CancelledClassessActivity.class);
         startActivity(intent);
+
     }
 
     public void launchTeachers(View v){
@@ -45,6 +48,14 @@ public class MainActivity extends AppCompatActivity {
     public void launchAcademicCalendar(View v){
     }
 
+    public void launchAbout(){
+        Intent openAbout = new Intent(MainActivity.this, AboutActivity.class);
+        startActivity(openAbout);
+    }
+
+    public void launchDawson(){
+        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.dawsoncollege.qc.ca/computer-science-technology/"));
+        startActivity(i);
     public void launchAbout(View v){
         Intent intent = new Intent(MainActivity.this,AboutActivity.class);
         startActivity(intent);

@@ -78,7 +78,7 @@
         android:text="@string/course_id"
         android:textColor="@android:color/black"
         android:textSize="22sp"
-        android:onClick="openDawsonWebpage"/>
+        android:onClick="openDawsonWebPage"/>
 
 
 
