@@ -2,10 +2,12 @@ package dawson.dawsondangerousclub;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class AboutActivity extends AppCompatActivity {
 
@@ -45,5 +47,30 @@ public class AboutActivity extends AppCompatActivity {
                 return false;
         }
 
+    }
+
+    public void displayAuthorDetails(View v) {
+
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle(getResources().getString(R.string.about_me_dialog));
+
+        switch (v.getId()) {
+            case R.id.issak:
+                alertDialog.setMessage(getResources().getString(R.string.about_me_dialog));
+                break;
+            case R.id.jacob:
+                alertDialog.setMessage(getResources().getString(R.string.about_me_dialog));
+                break;
+            case R.id.theo:
+                alertDialog.setMessage(getResources().getString(R.string.about_me_dialog));
+                break;
+        }
+
+        alertDialog.show();
+    }
+
+    public void openDawsonWebpage(View v){
+        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.dawsoncollege.qc.ca/computer-science-technology/"));
+        startActivity(i);
     }
 }
