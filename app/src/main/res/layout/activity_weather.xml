@@ -15,7 +15,7 @@ tools:context="dawson.dawsondangerousclub.WeatherActivity">
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:text="Temp should be here."
+    android:text="Temp stuff should be here."
     android:textColor="@android:color/black"
     android:textSize="60sp" />
 
