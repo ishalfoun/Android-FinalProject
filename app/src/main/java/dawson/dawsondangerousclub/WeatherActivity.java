@@ -42,9 +42,9 @@ public class WeatherActivity extends AppCompatActivity {
     String selectedCity ="montreal";
     String countryCode ="ca";
 
-    private static final int NETIOBUFFER = 10240;
+    private static final int NETIOBUFFER = 1024;
     private static final String API_KEY = "818cbaf6cb7daa55c791ff656317de47";
-    private static final String WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?";
+    private static final String WEATHER_URL = "http://api.openweathermap.org/data/2.5/forecast?";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,14 +115,16 @@ public class WeatherActivity extends AppCompatActivity {
         protected String doInBackground(Nullable... nullables) {
             try {
 
-                //String url = WEATHER_URL + "q=" + selectedCity + "," + countryCode + "&appid=" + API_KEY;
+                String url = "http://api.openweathermap.org/data/2.5/forecast?q=montreal,CA&appid=818cbaf6cb7daa55c791ff656317de47";
 
-                //Lat: 45.4888635 Long: -73.5877567 (dawson test)
-                String url = WEATHER_URL+"q=Montreal,CA&appid=818cbaf6cb7daa55c791ff656317de47";
+
+                //String url = WEATHER_URL + "q=" + selectedCity + "," + countryCode + "&appid=" + API_KEY;
 
                 return fetchForecastJSON(url);
 
             } catch (IOException e) {
+
+                e.printStackTrace();
                 return "Unable to retrieve web page. URL may be invalid.";
             }
 
@@ -130,10 +132,14 @@ public class WeatherActivity extends AppCompatActivity {
 
         protected void onPostExecute(String result) {
 
-            //temperatureTextView.setText(result);
-            //Toast.makeText(getApplicationContext(), "Finished", Toast.LENGTH_SHORT).show();
-            //Log.i("json", result);
-            forecastDisplay.setText(result);
+            if(result == "Invalid request."){
+
+            }else {
+                //temperatureTextView.setText(result);
+                //Toast.makeText(getApplicationContext(), "Finished", Toast.LENGTH_SHORT).show();
+                Log.i("json", result);
+                forecastDisplay.setText(result);
+            }
 
 
         }
@@ -164,7 +170,7 @@ public class WeatherActivity extends AppCompatActivity {
             int response = conn.getResponseCode();
 
             if (response != HttpURLConnection.HTTP_OK)
-                return "Server returned: " + response + " aborting read.";
+                return "Invalid request.";
 
             // get the stream for the data from the website
             is = conn.getInputStream();
@@ -203,7 +209,6 @@ public class WeatherActivity extends AppCompatActivity {
     public String convertInputStreamToString(InputStream stream) throws IOException {
         int bytesRead, totalRead = 0;
         byte[] buffer = new byte[NETIOBUFFER];
-        String currentTemperature = "0";
 
         // for data from the server
         BufferedInputStream bufferedInStream = new BufferedInputStream(stream);
@@ -218,18 +223,29 @@ public class WeatherActivity extends AppCompatActivity {
         }
         writer.flush();
 
-        String weatherDataJson = new String(byteArrayOutputStream.toString());
+        String weatherDataJson = byteArrayOutputStream.toString();
 
-        /*try {
-
+        try {
+            Log.i("json", weatherDataJson);
             JSONObject jsonObj = new JSONObject(weatherDataJson);
-            double tempKelvin = Double.parseDouble(jsonObj.getJSONObject("main").getString("temp"));
-            double tempCelsius = tempKelvin - KELVIN;
-            currentTemperature = Integer.toString((int) Math.round(tempCelsius)) + "°C";
+            //JSONArray forecastList = jsonObj.getJSONArray("list");
+
+            //for(int temp=0; temp < 40; temp+=9){
+            //   JSONObject tempObj = (JSONObject) forecastList.get(temp);
+            //    String day = tempObj.getString("dt_txt");
+           //     Log.i("day", day);
+
+
+            //}
+
+            //double tempKelvin = Double.parseDouble(jsonObj.getJSONObject("main").getString("temp"));
+            //double tempCelsius = tempKelvin - KELVIN;
+            //currentTemperature = Integer.toString((int) Math.round(tempCelsius)) + "°C";
 
         } catch (JSONException e) {
+            e.printStackTrace();
             throw new IOException("JSON data invalid");
-        }*/
+        }
         return weatherDataJson;
     }
 
