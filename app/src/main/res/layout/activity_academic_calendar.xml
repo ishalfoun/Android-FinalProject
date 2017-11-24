@@ -54,11 +54,12 @@
 
     </LinearLayout>
 
-    <WebView xmlns:android="http://schemas.android.com/apk/res/android"
+    <WebView
         android:id="@+id/academicCalendarWV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="99"/>
+
 
 </LinearLayout>
 
