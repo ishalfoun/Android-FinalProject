@@ -13,4 +13,8 @@
     <string name="about_me_issak">Grad Dawson CS 2017 Issak</string>
     <string name="about_me_jacob">Grad Dawson CS 2017 Jacob</string>
     <string name="about_me_theo">Grad Dawson CS 2017 Theo</string>
+    <string name="page_title">PageTitle</string>
+    <string name="updated">Updated</string>
+    <string name="xml_error">xml error</string>
+    <string name="connection_error">connection error</string>
 </resources>
