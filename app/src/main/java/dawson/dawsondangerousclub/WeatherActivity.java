@@ -23,14 +23,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
 
 public class WeatherActivity extends AppCompatActivity {
 
@@ -42,9 +44,9 @@ public class WeatherActivity extends AppCompatActivity {
     String selectedCity ="montreal";
     String countryCode ="ca";
 
-    private static final int NETIOBUFFER = 1024;
     private static final String API_KEY = "818cbaf6cb7daa55c791ff656317de47";
     private static final String WEATHER_URL = "http://api.openweathermap.org/data/2.5/forecast?";
+    private static final double KELVIN = 273.15;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,7 +119,6 @@ public class WeatherActivity extends AppCompatActivity {
 
                 String url = "http://api.openweathermap.org/data/2.5/forecast?q=montreal,CA&appid=818cbaf6cb7daa55c791ff656317de47";
 
-
                 //String url = WEATHER_URL + "q=" + selectedCity + "," + countryCode + "&appid=" + API_KEY;
 
                 return fetchForecastJSON(url);
@@ -138,7 +139,8 @@ public class WeatherActivity extends AppCompatActivity {
                 //temperatureTextView.setText(result);
                 //Toast.makeText(getApplicationContext(), "Finished", Toast.LENGTH_SHORT).show();
                 Log.i("json", result);
-                forecastDisplay.setText(result);
+               // forecastDisplay.setText(result);
+                cityInput.setText(result);
             }
 
 
@@ -207,46 +209,65 @@ public class WeatherActivity extends AppCompatActivity {
      * @throws IOException
      */
     public String convertInputStreamToString(InputStream stream) throws IOException {
-        int bytesRead, totalRead = 0;
-        byte[] buffer = new byte[NETIOBUFFER];
 
-        // for data from the server
-        BufferedInputStream bufferedInStream = new BufferedInputStream(stream);
-        // to collect data in our output stream
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        DataOutputStream writer = new DataOutputStream(byteArrayOutputStream);
+        String buildStr = "";
 
-        // read the stream until end
-        while ((bytesRead = bufferedInStream.read(buffer)) != -1) {
-            writer.write(buffer);
-            totalRead += bytesRead;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(
+                stream, "iso-8859-1"), 8);
+        StringBuilder sb = new StringBuilder();
+        String line = null;
+        while ((line = reader.readLine()) != null) {
+            sb.append(line);
         }
-        writer.flush();
 
-        String weatherDataJson = byteArrayOutputStream.toString();
+        //get json string
+        String weatherDataJson = sb.toString();
+
+        //reset string builder
+        sb.setLength(0);
 
         try {
-            Log.i("json", weatherDataJson);
+
+            //parse json text
             JSONObject jsonObj = new JSONObject(weatherDataJson);
-            //JSONArray forecastList = jsonObj.getJSONArray("list");
 
-            //for(int temp=0; temp < 40; temp+=9){
-            //   JSONObject tempObj = (JSONObject) forecastList.get(temp);
-            //    String day = tempObj.getString("dt_txt");
-           //     Log.i("day", day);
+            //retrieve the number of forecasts "cnt"(count) provided by the API
+            int forecasts =  jsonObj.getInt("cnt");
+            //get the all the forecasts
+            JSONArray forecastList = jsonObj.getJSONArray("list");
 
+            //iterate through each forecast and retrieve relevant data
+            for(int forecast=0; forecast < forecasts; forecast++){
 
-            //}
+                JSONObject weatherObj = (JSONObject) forecastList.get(forecast);
+                JSONObject weatherTemperature = weatherObj.getJSONObject("main");
+                JSONArray weatherDetails = weatherObj.getJSONArray("weather");
 
-            //double tempKelvin = Double.parseDouble(jsonObj.getJSONObject("main").getString("temp"));
-            //double tempCelsius = tempKelvin - KELVIN;
-            //currentTemperature = Integer.toString((int) Math.round(tempCelsius)) + "°C";
+                String forecastDate = weatherObj.getString("dt_txt");
+                String description =  weatherDetails.getJSONObject(0).getString("description");
+                String icon = weatherDetails.getJSONObject(0).getString("icon");
+                String temperature = Integer.toString( (int)Math.round(weatherTemperature.getDouble("temp") - KELVIN)) + "°C";
 
-        } catch (JSONException e) {
+                description  = description.substring(0, 1).toUpperCase() + description.substring(1);
+
+                //format found in json
+                SimpleDateFormat apiFormat =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date parsedDate = apiFormat.parse(forecastDate);
+                //desired format
+                SimpleDateFormat appFormat= new SimpleDateFormat("EEEE MMMM dd ha");
+
+                Log.i("forecast", appFormat.format(parsedDate)+ " " + description + " " +  temperature + " -"+ icon);
+
+                // amalgamate data to be deciphered in async task post execute, "|" separates each weather forecast
+                sb.append(appFormat.format(parsedDate)+ " " + description + " " +  temperature + " $"+ icon + "|");
+
+            }
+
+        } catch (Exception e) {
             e.printStackTrace();
             throw new IOException("JSON data invalid");
         }
-        return weatherDataJson;
+        return sb.toString();
     }
 
 
