@@ -1,107 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <ImageButton
         android:id="@+id/dawsonImgBttn"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_column="0"
-        android:layout_row="0"
+        android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:onClick="launchDawson"
+        android:onClick="openActivity"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/dawson" />
 
     <ImageButton
         android:id="@+id/teamImgBttn"
         android:layout_width="match_parent"
-        android:layout_height="69dp"
-        android:layout_column="0"
-        android:layout_row="1"
+        android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:onClick="launchAbout"
+        android:onClick="openActivity"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/dangerousclub" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:weightSum="2"
         android:orientation="horizontal">
 
-        <ImageButton
+        <Button
             android:id="@+id/cancellationsImgBttn"
-            android:layout_width="197dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="2"
-            android:onClick="launchCancellations"
-            app:srcCompat="@mipmap/ic_launcher" />
+            android:onClick="openActivity"
+            android:text="Cancellations"/>
 
-        <ImageButton
+        <Button
             android:id="@+id/teacherImgBttn"
-            android:layout_width="197dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="2"
-            android:layout_weight="0.13"
-            android:onClick="launchTeachers"
-            app:srcCompat="@mipmap/ic_launcher" />
+            android:onClick="openActivity"
+            android:text="Find Teacher"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="2">
 
-        <ImageButton
+        <Button
             android:id="@+id/calendarImgBttn"
-            android:layout_width="197dp"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="2"
-            android:onClick="launchCalendar"
-            app:srcCompat="@mipmap/ic_launcher" />
-
-        <ImageButton
-            android:id="@+id/notesImgBttn"
-            android:layout_width="197dp"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="2"
             android:layout_weight="1"
-            android:onClick="launchNotes"
-            app:srcCompat="@mipmap/ic_launcher" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="openActivity"
+            android:text="Add to Calendar"/>
+
+        <Button
+            android:id="@+id/notesImgBttn"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="openActivity"
+            android:text="Notes"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
-        <ImageButton
+        <Button
             android:id="@+id/weatherImgBttn"
-            android:layout_width="197dp"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="2"
-            android:onClick="c"
-            app:srcCompat="@mipmap/ic_launcher" />
-
-        <ImageButton
-            android:id="@+id/academicCalendarImgBttn"
-            android:layout_width="197dp"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="2"
             android:layout_weight="1"
-            android:onClick="launchAcademicCalendar"
-            app:srcCompat="@mipmap/ic_launcher" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="openActivity"
+            android:text="Weather"/>
+
+        <Button
+            android:id="@+id/academicCalendarImgBttn"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="openActivity"
+            android:text="Academic Calendar"/>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tempTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:text="Temp should be here."
+        android:textColor="@android:color/black"
+        android:textSize="40sp" />
+
+
+
 
 </LinearLayout>

@@ -56,20 +56,20 @@ public class AboutActivity extends AppCompatActivity {
 
         switch (v.getId()) {
             case R.id.issak:
-                alertDialog.setMessage(getResources().getString(R.string.about_me_dialog));
+                alertDialog.setMessage(getResources().getString(R.string.about_me_issak));
                 break;
             case R.id.jacob:
-                alertDialog.setMessage(getResources().getString(R.string.about_me_dialog));
+                alertDialog.setMessage(getResources().getString(R.string.about_me_jacob));
                 break;
             case R.id.theo:
-                alertDialog.setMessage(getResources().getString(R.string.about_me_dialog));
+                alertDialog.setMessage(getResources().getString(R.string.about_me_theo));
                 break;
         }
 
         alertDialog.show();
     }
 
-    public void openDawsonWebpage(View v){
+    public void openDawsonWebPage(View v){
         Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.dawsoncollege.qc.ca/computer-science-technology/"));
         startActivity(i);
     }
