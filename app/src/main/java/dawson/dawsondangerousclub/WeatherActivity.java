@@ -57,7 +57,7 @@ public class WeatherActivity extends AppCompatActivity {
 
         getCountriesFromFile();
 
-        //attch countres to spinner
+        //attach countres to spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, countries);
         countrySelector.setAdapter(adapter);
 
@@ -80,7 +80,7 @@ public class WeatherActivity extends AppCompatActivity {
     }
 
     /**
-     * Readd json file with all the countries and their ISO 3166 country codes . Puts them into an arraylist.
+     * Read json file with all the countries and their ISO 3166 country codes . Puts them into an arraylist.
      */
     public void getCountriesFromFile(){
 
