@@ -37,7 +37,8 @@ public class CalendarActivity extends AppCompatActivity {
     private TextView tvEndTime;
     private TextView tvStartDate;
     private TextView tvEndDate;
-
+    final DateFormat timeFormat = DateFormat.getTimeInstance(DateFormat.MEDIUM);
+    final DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM);
     Calendar currentTime;
     Calendar startTime;
     Calendar endTime;
@@ -67,7 +68,7 @@ public class CalendarActivity extends AppCompatActivity {
     private TimePickerDialog.OnTimeSetListener startTimeListener = new TimePickerDialog.OnTimeSetListener() {
         @Override
         public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-            startTime.set(Calendar.HOUR, hour);
+            startTime.set(Calendar.HOUR_OF_DAY, hour);
             startTime.set(Calendar.MINUTE, minute);
             updateUI();
         }
@@ -76,16 +77,16 @@ public class CalendarActivity extends AppCompatActivity {
     private TimePickerDialog.OnTimeSetListener endTimeListener = new TimePickerDialog.OnTimeSetListener() {
         @Override
         public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-            endTime.set(Calendar.HOUR, hour);
+            endTime.set(Calendar.HOUR_OF_DAY, hour);
             endTime.set(Calendar.MINUTE, minute);
             updateUI();
         }
     };
 
     public void updateUI() {
-        tvStartTime.setText(startTime.get(Calendar.HOUR) + ":" + startTime.get(Calendar.MINUTE));
+        tvStartTime.setText(timeFormat.format(startTime.getTime()));
         tvStartDate.setText(startTime.get(Calendar.DAY_OF_MONTH) + "/" + startTime.get(Calendar.MONTH) + "/" + startTime.get(Calendar.YEAR));
-        tvEndTime.setText(endTime.get(Calendar.HOUR) + ":" + endTime.get(Calendar.MINUTE));
+        tvEndTime.setText(endTime.get(Calendar.HOUR_OF_DAY) + ":" + endTime.get(Calendar.MINUTE) + " "+((endTime.get(Calendar.AM_PM))==Calendar.AM? "AM" : "PM"));
         tvEndDate.setText(endTime.get(Calendar.DAY_OF_MONTH) + "/" + endTime.get(Calendar.MONTH) + "/" + endTime.get(Calendar.YEAR));
     }
     public void clearUI()
@@ -117,8 +118,7 @@ public class CalendarActivity extends AppCompatActivity {
         endTime = Calendar.getInstance();
 
         updateUI();
-        android.text.format.DateFormat dateFormat = new android.text.format.DateFormat();
-        is24HourFormat= dateFormat.is24HourFormat(this);
+
     }
 
     public void onClickStartDate(View v) {
@@ -132,12 +132,12 @@ public class CalendarActivity extends AppCompatActivity {
     }
 
     public void onClickStartTime(View v) {
-        TimePickerDialog dialog = new TimePickerDialog(this, startTimeListener, currentTime.get(Calendar.HOUR), currentTime.get(Calendar.MINUTE), is24HourFormat);
+        TimePickerDialog dialog = new TimePickerDialog(this, startTimeListener, currentTime.get(Calendar.HOUR_OF_DAY), currentTime.get(Calendar.MINUTE), false);
         dialog.show();
     }
 
     public void onClickEndTime(View v) {
-        TimePickerDialog dialog = new TimePickerDialog(this, endTimeListener, currentTime.get(Calendar.HOUR), currentTime.get(Calendar.MINUTE), is24HourFormat);
+        TimePickerDialog dialog = new TimePickerDialog(this, endTimeListener, currentTime.get(Calendar.HOUR_OF_DAY), currentTime.get(Calendar.MINUTE), false);
         dialog.show();
     }
 
@@ -148,10 +148,10 @@ public class CalendarActivity extends AppCompatActivity {
         long startMillis = 0;
         long endMillis = 0;
         Calendar beginTime = Calendar.getInstance();
-        beginTime.set(startTime.get(Calendar.YEAR), startTime.get(Calendar.MONTH), startTime.get(Calendar.DAY_OF_MONTH), startTime.get(Calendar.HOUR), startTime.get(Calendar.MINUTE));
+        beginTime.set(startTime.get(Calendar.YEAR), startTime.get(Calendar.MONTH), startTime.get(Calendar.DAY_OF_MONTH), startTime.get(Calendar.HOUR_OF_DAY), startTime.get(Calendar.MINUTE));
         startMillis = beginTime.getTimeInMillis();
         Calendar endTime = Calendar.getInstance();
-        endTime.set(endTime.get(Calendar.YEAR), endTime.get(Calendar.MONTH), endTime.get(Calendar.DAY_OF_MONTH), endTime.get(Calendar.HOUR), endTime.get(Calendar.MINUTE));
+        endTime.set(endTime.get(Calendar.YEAR), endTime.get(Calendar.MONTH), endTime.get(Calendar.DAY_OF_MONTH), endTime.get(Calendar.HOUR_OF_DAY), endTime.get(Calendar.MINUTE));
         endMillis = endTime.getTimeInMillis();
 
         ContentResolver cr = getContentResolver();
