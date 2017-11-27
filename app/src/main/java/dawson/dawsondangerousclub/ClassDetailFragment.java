@@ -1,5 +1,6 @@
 package dawson.dawsondangerousclub;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,7 +17,7 @@ import dawson.dawsondangerousclub.R;
 
 public class ClassDetailFragment extends Fragment {
     int position = 0;
-	
+	final static String MYTAG = "MYTAG";
     TextView tvClassTitle;
     TextView tvClassDescription;
     TextView tvClassName;
@@ -27,11 +28,13 @@ public class ClassDetailFragment extends Fragment {
     ArrayList<Entry> entries;
 
 
+    public void onClickTeacher(View v)
+    {
+
+    }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @Override
@@ -52,12 +55,19 @@ public class ClassDetailFragment extends Fragment {
             }
         }
 
-        Log.d("MYTAG",  "got the entries in detailfrag: "+" "+ (entries != null ? entries.get(0).title : "empty"));
+        Log.d(MYTAG,  "got the entries in detailfrag: "+" "+ (entries != null ? entries.get(0).title : "empty"));
 
 		  tvClassTitle = (TextView) view.findViewById(R.id.classTitle);
 		  tvClassDescription = (TextView) view.findViewById(R.id.classDescription);
 		  tvClassName = (TextView) view.findViewById(R.id.className);
 		  tvClassTeacher = (TextView) view.findViewById(R.id.classTeacher);
+        tvClassTeacher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), TeacherContactActivity.class);
+                i.putExtra("name", tvClassTeacher.getText());
+            }
+        });
 		  tvClassNotes = (TextView) view.findViewById(R.id.classNotes);
 		  tvClassPubDate = (TextView) view.findViewById(R.id.classPubDate);
 

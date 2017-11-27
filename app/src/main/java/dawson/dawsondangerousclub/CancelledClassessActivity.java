@@ -46,6 +46,7 @@ import dawson.dawsondangerousclub.ClassMenuFragment;
 public class CancelledClassessActivity extends AppCompatActivity implements ClassMenuFragment.OnItemSelectedListener{
 	
 	ArrayList<Entry> entries;
+    final static String MYTAG = "MYTAG";
 	
     //RSS Feed URL
     private final String RSS_FEED_URL = "https://www.dawsoncollege.qc.ca/wp-content/external-includes/cancellations/feed.xml";
@@ -77,7 +78,7 @@ public class CancelledClassessActivity extends AppCompatActivity implements Clas
             errorTv.setText("No network connection available.");
         }
 
-        Log.d("MYTAG",  "reached end of oncreate main");
+        Log.d(MYTAG,  "reached end of oncreate main");
 //        displayEntries();
     }
     private void displayEntries()
@@ -93,7 +94,7 @@ public class CancelledClassessActivity extends AppCompatActivity implements Clas
             entries.add(new Entry());
         }
 
-            Log.d("MYTAG",  "enter displayentries 1st entry:"+entries.get(0).title);
+            Log.d(MYTAG,  "enter displayentries 1st entry:"+entries.get(0).title);
         ClassMenuFragment menuFragment = new ClassMenuFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
@@ -167,12 +168,6 @@ public class CancelledClassessActivity extends AppCompatActivity implements Clas
 
         @Override
         protected void onPostExecute(String result) {
-            //setContentView(R.layout.activity_cancelled_classess);
-            // Displays the HTML string in the UI via a WebView
-//            WebView myWebView = (WebView) findViewById(R.id.webview);
-//            myWebView.loadData(result, "text/html", null);
-
-
             displayEntries();
         }
 
@@ -210,9 +205,8 @@ public class CancelledClassessActivity extends AppCompatActivity implements Clas
                 }
             }
 
-            Log.d("MYTAG", "size: " + entries.size());
+            Log.d(MYTAG, "size: " + entries.size());
 
-//            myAdapter adapter;
             int mCurPosition = -1;
 
 
