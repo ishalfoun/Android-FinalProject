@@ -9,6 +9,12 @@
     tools:context="dawson.dawsondangerousclub.CalendarActivity">
 
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Event to Calendar"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,17 +63,17 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tvStart"
+            android:id="@+id/tvStartTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="" />
 
         <Button
-            android:id="@+id/buttonStart"
+            android:id="@+id/buttonStartTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onClickStart"
+            android:onClick="onClickStartTime"
             android:layout_weight="1"
             android:text="Set Start time" />
 
@@ -78,20 +84,75 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tvEnd"
+            android:id="@+id/tvStartDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="" />
 
         <Button
-            android:id="@+id/buttonEnd"
+            android:id="@+id/buttonStartDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onClickStart"
+            android:layout_weight="1"
+            android:onClick="onClickStartDate"
+            android:text="Set Start Date" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvEndTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="" />
+
+        <Button
+            android:id="@+id/buttonEndTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClickEndTime"
             android:layout_weight="1"
             android:text="Set End time" />
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvEndDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="" />
+
+        <Button
+            android:id="@+id/buttonEndDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClickEndDate"
+            android:layout_weight="1"
+            android:text="Set End Date" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onSubmit"
+        android:text="Add to Calendar" />
+
+    <TextView
+        android:id="@+id/errors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="" />
 
 </LinearLayout>
