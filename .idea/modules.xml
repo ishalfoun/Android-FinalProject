@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\Users\the_b\Desktop\Android\finalproject\dawsonApp-DangerousClub\DawsonDangerousClub.iml" filepath="C:\Users\the_b\Desktop\Android\finalproject\dawsonApp-DangerousClub\DawsonDangerousClub.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../the_b/Desktop/Android/finalproject/dawsonApp-DangerousClub/DawsonDangerousClub.iml" filepath="$PROJECT_DIR$/../../../the_b/Desktop/Android/finalproject/dawsonApp-DangerousClub/DawsonDangerousClub.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/dawsonApp-DangerousClub.iml" filepath="$PROJECT_DIR$/dawsonApp-DangerousClub.iml" />
     </modules>
