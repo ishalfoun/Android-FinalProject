@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void locationPermissionRequest() {
 
-        if (!hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)) {
+        while (!hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_REQUEST);
         }
 
@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
                 String url = WEATHER_URL + "lat=" + latitude + "&lon=" + longitude + "&appid=" + API_KEY;
 
                 //Lat: 45.4888635 Long: -73.5877567 (dawson test)
-                //String url = WEATHER_URL+"lat=45.4888635&lon=-73.5877567&appid=818cbaf6cb7daa55c791ff656317de47";
+                //String url = "http://api.openweathermap.org/data/2.5/weather?lat=45.4888635&lon=-73.5877567&appid=818cbaf6cb7daa55c791ff656317de47";
 
                 return fetchTemperatureJSON(url);
 
@@ -263,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
         }
         writer.flush();
 
-        String weatherDataJson = new String(byteArrayOutputStream.toString());
+        String weatherDataJson = byteArrayOutputStream.toString();
 
         try {
 

@@ -13,6 +13,7 @@
     <string name="about_me_issak">Grad Dawson CS 2017 Issak</string>
     <string name="about_me_jacob">Grad Dawson CS 2017 Jacob</string>
     <string name="about_me_theo">Grad Dawson CS 2017 Theo</string>
+
     <string name="page_title">Cancelled Classes</string>
     <string name="updated">Updated</string>
     <string name="xml_error">xml error</string>
@@ -24,5 +25,13 @@
     <string name="classNotes">Notes:</string>
     <string name="classPubDate">Date Cancelled:</string>
 
+
+
+    <string name="add_note">New Note</string>
+    <string name="cancel">Cancel</string>
+    <string name="new_note_title">New Note</string>
+    <string name="create_note">Create</string>
+    <string name="note_added">Note added.</string>
+    <string name="note_error">Error creating your note.</string>
 
 </resources>
