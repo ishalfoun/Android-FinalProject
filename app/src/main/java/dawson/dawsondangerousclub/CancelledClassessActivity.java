@@ -1,8 +1,10 @@
 package dawson.dawsondangerousclub;
 
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
@@ -10,6 +12,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,9 +40,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import dawson.dawsondangerousclub.ClassDetailFragment;
+import dawson.dawsondangerousclub.ClassMenuFragment;
 
-public class CancelledClassessActivity extends AppCompatActivity {
-
+public class CancelledClassessActivity extends AppCompatActivity implements ClassMenuFragment.OnItemSelectedListener{
+	
+	ArrayList<Entry> entries;
+	
     //RSS Feed URL
     private final String RSS_FEED_URL = "https://www.dawsoncollege.qc.ca/wp-content/external-includes/cancellations/feed.xml";
     TextView errorTv;
@@ -52,14 +59,14 @@ public class CancelledClassessActivity extends AppCompatActivity {
     public static boolean refreshDisplay = true;
     public static String sPref = null;
 
-    myAdapter adapter;
+//    myAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cancelled_classess);
 
-        errorTv = (TextView) findViewById(R.id.errors);
+        //errorTv = (TextView) findViewById(R.id.errors);
 
         // first check to see if we can get on the network
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -70,10 +77,80 @@ public class CancelledClassessActivity extends AppCompatActivity {
             errorTv.setText("No network connection available.");
         }
 
-        adapter
+        Log.d("MYTAG",  "reached end of oncreate main");
+//        displayEntries();
+    }
+    private void displayEntries()
+    {
+
+//        List<String>  listofOptions = (List<String>) Arrays.asList(options);
+//        then you can user constructoru of an arraylist to instantiate with predefined values.
+//
+//            ArrayList<String> arrlistofOptions = new ArrayList<String>(list);
+//
+        if (entries == null) {
+            entries = new ArrayList<>();
+            entries.add(new Entry());
+        }
+
+            Log.d("MYTAG",  "enter displayentries 1st entry:"+entries.get(0).title);
+        ClassMenuFragment menuFragment = new ClassMenuFragment();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+        Bundle args = new Bundle();
+        args.putParcelableArrayList("entries", entries);
+        menuFragment.setArguments(args);
+
+        //if (savedInstanceState == null) {
+            ft.add(R.id.flContainer, menuFragment);
+            ft.commit();
+//        } else {
+//            ft.replace(R.id.flContainer, menuFragment);
+//            ft.commit();
+//        }
+
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            ClassDetailFragment secondFragment = new ClassDetailFragment();
+            args = new Bundle();
+            args.putInt("position", 0);
+            args.putParcelableArrayList("entries", entries);
+            secondFragment.setArguments(args);
+            FragmentTransaction ft2 = getSupportFragmentManager().beginTransaction();
+            ft2.add(R.id.flContainer2, secondFragment);
+            ft2.commit();
+        }
+
+    }
+	
+	
+	
+	
+    @Override
+    public void onClassItemSelected(int position) {
+        ClassDetailFragment detailFragment = new ClassDetailFragment();
+        Bundle args = new Bundle();
+        args.putInt("position", position);
+        args.putParcelableArrayList("entries", entries);
+        detailFragment.setArguments(args);
+
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.flContainer2, detailFragment)
+                    //.addToBackStack(null)
+                    .commit();
+        }else{
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.flContainer, detailFragment)
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
 
 
+	
+	
     private class DownloadXmlTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
@@ -90,10 +167,13 @@ public class CancelledClassessActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            setContentView(R.layout.activity_cancelled_classess);
+            //setContentView(R.layout.activity_cancelled_classess);
             // Displays the HTML string in the UI via a WebView
-            WebView myWebView = (WebView) findViewById(R.id.webview);
-            myWebView.loadData(result, "text/html", null);
+//            WebView myWebView = (WebView) findViewById(R.id.webview);
+//            myWebView.loadData(result, "text/html", null);
+
+
+            displayEntries();
         }
 
         // Uploads XML from stackoverflow.com, parses it, and combines it with
@@ -103,7 +183,7 @@ public class CancelledClassessActivity extends AppCompatActivity {
 
             // Instantiate the parser
             FeedParser rssFeedParser = new FeedParser();
-            List<Entry> entries = null;
+            entries = null;
             String title = null;
             String description = null;
             String course = null;
@@ -121,7 +201,7 @@ public class CancelledClassessActivity extends AppCompatActivity {
 
             try {
                 stream = downloadUrl(urlString);
-                entries = rssFeedParser.parse(stream);
+                entries = (ArrayList<Entry>) rssFeedParser.parse(stream);
                 // Makes sure that the InputStream is closed after the app is
                 // finished using it.
             } finally {
@@ -132,23 +212,23 @@ public class CancelledClassessActivity extends AppCompatActivity {
 
             Log.d("MYTAG", "size: " + entries.size());
 
-            myAdapter adapter;
+//            myAdapter adapter;
             int mCurPosition = -1;
 
 
-//
-//            // FeedParser returns a List (called "entries") of Entry objects.
-//            // Each Entry object represents a single item in the XML feed.
-//            // This section processes the entries list to combine each entry with HTML markup.
-//            // Each entry is displayed in the UI as a link that includes the description.
-//            for (Entry entry : entries) {
-//                htmlString.append("<p><a href='");
-//                htmlString.append(entry.title);
-//                htmlString.append("'>" + entry.title + "</a></p>");
-//                // If the user set the preference to include summary text,
-//                // adds it to the display.
-//                    htmlString.append(entry.description);
-//            }
+
+            // FeedParser returns a List (called "entries") of Entry objects.
+            // Each Entry object represents a single item in the XML feed.
+            // This section processes the entries list to combine each entry with HTML markup.
+            // Each entry is displayed in the UI as a link that includes the description.
+            for (Entry entry : entries) {
+                htmlString.append("<p><a href='");
+                htmlString.append(entry.title);
+                htmlString.append("'>" + entry.title + "</a></p>");
+                // If the user set the preference to include summary text,
+                // adds it to the display.
+                    htmlString.append(entry.description);
+            }
             return htmlString.toString();
         }
 
@@ -167,87 +247,7 @@ public class CancelledClassessActivity extends AppCompatActivity {
         }
     }
 
-    public myAdapter getMyAdapter(Context context){
-
-        myDBHelper db = new myDBHelper(context);
-        SQLiteDatabase write = db.getWritableDatabase();
-        SQLiteDatabase read = db.getReadableDatabase();
-        write.execSQL("delete from "+ myDBHelper.TABLE_DINOS);
-
-        ContentValues cv= new ContentValues();
-
-        for(int x=0; x<10; x++){
-
-            //insert values
-            cv.put(myDBHelper.COL_NAME,dinos[x]);
-            cv.put(myDBHelper.COL_INFO,getResources().getString(dinoinfos[x]));
-            cv.put(myDBHelper.COL_ICON_ID,smallImages[x]);
-            cv.put(myDBHelper.COL_IMAGE_ID,bigImages[x]);
-
-            write.insert(myDBHelper.TABLE_DINOS,null,cv);
-
-        }
-
-        //read
-        Cursor cursor = read.query(myDBHelper.TABLE_DINOS,new String[]{myDBHelper.COL_NAME,myDBHelper.COL_ICON_ID},null,null,null,null,null);
-        //cycle through rows
-        while(cursor.moveToNext()){
-            //get data via index
-            dinosDB.add(cursor.getString(cursor.getColumnIndex(myDBHelper.COL_NAME)));
-            smallImagesDB.add(cursor.getInt(cursor.getColumnIndex(myDBHelper.COL_ICON_ID)));
-
-        }
-
-        return new myAdapter(dinosDB.toArray(new String[0]),toIntArray(smallImagesDB), context);
-
-
-
-    }
-    class myAdapter extends BaseAdapter {
-        String[] text;
-        int[] imge;
-        Context context;
-
-        myAdapter() {
-            text = null;
-            imge = null;
-        }
-
-        public myAdapter(String[] texts, int[] images, Context context) {
-            text = texts;
-            imge = images;
-
-        }
-
-        public int getCount() {
-            // TODO Auto-generated method stub
-            return text.length;
-        }
-
-        public Object getItem(int arg0) {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-        public long getItemId(int position) {
-            // TODO Auto-generated method stub
-            return position;
-        }
-
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            //LayoutInflater inflater = LayoutInflater.from(context);
-            LayoutInflater inflater = getLayoutInflater();
-            View row;
-            row = inflater.inflate(R.layout.cancel_list, parent, false);
-            TextView textV;
-
-            textV = (TextView) row.findViewById(R.id.course);
-            textV.setText(text[position]);
-
-            return (row);
-        }
-    }
+	
 }
 
 

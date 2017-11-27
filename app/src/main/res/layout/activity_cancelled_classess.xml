@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    tools:context="dawson.dawsondangerousclub.CancelledClassessActivity">
+    android:orientation="vertical"
+    tools:context="dawson.dawsondangerousclub.CancelledClassessActivity"
+    android:weightSum="1">
 
-    <TextView
-        android:id="@+id/errors"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="test"
-        tools:layout_editor_absoluteX="60dp"
-        tools:layout_editor_absoluteY="16dp" />
-
-    <WebView
-        android:id="@+id/webview"
+    <FrameLayout
+        android:id="@+id/flContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight="0.5" />
+
+    <!--<WebView-->
+        <!--android:id="@+id/webview"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="0.5" />-->
 
 </LinearLayout>
