@@ -44,7 +44,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class WeatherActivity extends AppCompatActivity {
+public class WeatherActivity extends OptionsMenu {
 
     EditText cityInput;
     Spinner countrySelector;
@@ -620,40 +620,5 @@ public class WeatherActivity extends AppCompatActivity {
         return ret;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the main; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            //open About app activity
-            case R.id.about:
-                Intent openAbout = new Intent(getApplicationContext(),
-                        AboutActivity.class);
-                startActivity(openAbout);
-                return true;
-            //Launches Dawson Computer Science web page
-            case R.id.dawson:
-                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.dawsoncollege.qc.ca/computer-science-technology/"));
-                startActivity(i);
-                return true;
-            //Open last viewed quote
-            case R.id.settings:
-                //open settings activity
-                Intent openSettings = new Intent(getApplicationContext(),
-                        SettingsActivity.class);
-                startActivity(openSettings);
-                return true;
-            default:
-                return false;
-        }
-
-    }
 
 }

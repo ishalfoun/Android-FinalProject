@@ -43,7 +43,7 @@ import java.util.List;
 import dawson.dawsondangerousclub.ClassDetailFragment;
 import dawson.dawsondangerousclub.ClassMenuFragment;
 
-public class CancelledClassessActivity extends AppCompatActivity implements ClassMenuFragment.OnItemSelectedListener{
+public class CancelledClassessActivity extends OptionsMenu implements ClassMenuFragment.OnItemSelectedListener{
 	
 	ArrayList<Entry> entries;
     final static String MYTAG = "MYTAG";
@@ -51,15 +51,6 @@ public class CancelledClassessActivity extends AppCompatActivity implements Clas
     //RSS Feed URL
     private final String RSS_FEED_URL = "https://www.dawsoncollege.qc.ca/wp-content/external-includes/cancellations/feed.xml";
     TextView errorTv;
-
-    // Whether there is a Wi-Fi connection.
-    private static boolean wifiConnected = false;
-    // Whether there is a mobile connection.
-    private static boolean mobileConnected = false;
-    // Whether the display should be refreshed.
-    public static boolean refreshDisplay = true;
-    public static String sPref = null;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
