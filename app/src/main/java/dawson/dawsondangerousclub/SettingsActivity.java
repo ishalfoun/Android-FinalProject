@@ -23,4 +23,5 @@ public class SettingsActivity extends OptionsMenu {
         menu.removeItem(R.id.settings);
         return true;
     }
+
 }
