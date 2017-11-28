@@ -46,6 +46,7 @@ import dawson.dawsondangerousclub.ClassMenuFragment;
 public class CancelledClassessActivity extends AppCompatActivity implements ClassMenuFragment.OnItemSelectedListener{
 	
 	ArrayList<Entry> entries;
+    final static String MYTAG = "MYTAG";
 	
     //RSS Feed URL
     private final String RSS_FEED_URL = "https://www.dawsoncollege.qc.ca/wp-content/external-includes/cancellations/feed.xml";
@@ -59,14 +60,13 @@ public class CancelledClassessActivity extends AppCompatActivity implements Clas
     public static boolean refreshDisplay = true;
     public static String sPref = null;
 
-//    myAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cancelled_classess);
 
-        //errorTv = (TextView) findViewById(R.id.errors);
+        errorTv = (TextView) findViewById(R.id.errors);
 
         // first check to see if we can get on the network
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -76,24 +76,14 @@ public class CancelledClassessActivity extends AppCompatActivity implements Clas
         } else {
             errorTv.setText("No network connection available.");
         }
-
-        Log.d("MYTAG",  "reached end of oncreate main");
-//        displayEntries();
     }
     private void displayEntries()
     {
-
-//        List<String>  listofOptions = (List<String>) Arrays.asList(options);
-//        then you can user constructoru of an arraylist to instantiate with predefined values.
-//
-//            ArrayList<String> arrlistofOptions = new ArrayList<String>(list);
-//
         if (entries == null) {
             entries = new ArrayList<>();
             entries.add(new Entry());
         }
-
-            Log.d("MYTAG",  "enter displayentries 1st entry:"+entries.get(0).title);
+        Log.d(MYTAG,  "enter displayentries 1st entry:"+entries.get(0).title);
         ClassMenuFragment menuFragment = new ClassMenuFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
@@ -167,12 +157,6 @@ public class CancelledClassessActivity extends AppCompatActivity implements Clas
 
         @Override
         protected void onPostExecute(String result) {
-            //setContentView(R.layout.activity_cancelled_classess);
-            // Displays the HTML string in the UI via a WebView
-//            WebView myWebView = (WebView) findViewById(R.id.webview);
-//            myWebView.loadData(result, "text/html", null);
-
-
             displayEntries();
         }
 
@@ -184,21 +168,6 @@ public class CancelledClassessActivity extends AppCompatActivity implements Clas
             // Instantiate the parser
             FeedParser rssFeedParser = new FeedParser();
             entries = null;
-            String title = null;
-            String description = null;
-            String course = null;
-            String teacher = null;
-            String notes = null;
-            String pubDate = null;
-
-            Calendar rightNow = Calendar.getInstance();
-            DateFormat formatter = new SimpleDateFormat("MMM dd h:mmaa");
-
-            StringBuilder htmlString = new StringBuilder();
-            htmlString.append("<h3>" + getResources().getString(R.string.page_title) + "</h3>");
-            htmlString.append("<em>" + getResources().getString(R.string.updated) + " " +
-                    formatter.format(rightNow.getTime()) + "</em>");
-
             try {
                 stream = downloadUrl(urlString);
                 entries = (ArrayList<Entry>) rssFeedParser.parse(stream);
@@ -210,26 +179,9 @@ public class CancelledClassessActivity extends AppCompatActivity implements Clas
                 }
             }
 
-            Log.d("MYTAG", "size: " + entries.size());
+            Log.d(MYTAG, "size: " + entries.size());
 
-//            myAdapter adapter;
-            int mCurPosition = -1;
-
-
-
-            // FeedParser returns a List (called "entries") of Entry objects.
-            // Each Entry object represents a single item in the XML feed.
-            // This section processes the entries list to combine each entry with HTML markup.
-            // Each entry is displayed in the UI as a link that includes the description.
-            for (Entry entry : entries) {
-                htmlString.append("<p><a href='");
-                htmlString.append(entry.title);
-                htmlString.append("'>" + entry.title + "</a></p>");
-                // If the user set the preference to include summary text,
-                // adds it to the display.
-                    htmlString.append(entry.description);
-            }
-            return htmlString.toString();
+            return null;
         }
 
         // Given a string representation of a URL, sets up a connection and gets
