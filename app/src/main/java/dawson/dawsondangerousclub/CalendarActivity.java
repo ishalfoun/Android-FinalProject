@@ -29,7 +29,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-public class CalendarActivity extends AppCompatActivity {
+public class CalendarActivity extends OptionsMenu {
 
     private EditText title;
     private EditText description;

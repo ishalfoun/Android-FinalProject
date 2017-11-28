@@ -3,7 +3,7 @@ package dawson.dawsondangerousclub;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class FindTeacherActivity extends AppCompatActivity {
+public class FindTeacherActivity extends OptionsMenu {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
