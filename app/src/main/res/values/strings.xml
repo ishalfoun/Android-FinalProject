@@ -26,12 +26,16 @@
     <string name="classPubDate">Date Cancelled:</string>
 
 
-
+    <string name="preference_file_key">dawson.dawsondangerousclub</string>
     <string name="add_note">New Note</string>
     <string name="cancel">Cancel</string>
     <string name="new_note_title">New Note</string>
     <string name="create_note">Create</string>
     <string name="note_added">Note added.</string>
     <string name="note_error">Error creating your note.</string>
+    <string name="settings_message">You are leaving the settings. Save now?</string>
+    <string name="settings_title">Warning</string>
+    <string name="settings_confirm">Confirm</string>
+    <string name="settings_discard">Discard</string>
 
 </resources>
