@@ -2,7 +2,9 @@ package dawson.dawsondangerousclub;
 
 import android.content.Intent;
 
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,7 +33,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends OptionsMenu {
 
     private static final int NETIOBUFFER = 1024;
     private static final int LOCATION_REQUEST = 1340;
@@ -46,11 +48,14 @@ public class MainActivity extends AppCompatActivity {
     TextView temperatureTextView;
 
 
+    SharedPreferences prefs = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        firstLaunchPrefs();
         temperatureTextView = (TextView) findViewById(R.id.tempTV);
 
         //force location permission
@@ -92,6 +97,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void firstLaunchPrefs()
+    {
+        prefs = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
+        if ( prefs.getString("email", "undefined").equals("undefined"))
+        {
+            //first time launch
+            Intent i = new Intent(this, SettingsActivity.class);
+            startActivity(i);
+        }
+    }
     /**
      * Fires an intent according to activity requested.
      *
@@ -136,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void locationPermissionRequest() {
 
-        if (!hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)) {
+        while (!hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_REQUEST);
         }
 
@@ -167,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
                 String url = WEATHER_URL + "lat=" + latitude + "&lon=" + longitude + "&appid=" + API_KEY;
 
                 //Lat: 45.4888635 Long: -73.5877567 (dawson test)
-                //String url = WEATHER_URL+"lat=45.4888635&lon=-73.5877567&appid=818cbaf6cb7daa55c791ff656317de47";
+                //String url = "http://api.openweathermap.org/data/2.5/weather?lat=45.4888635&lon=-73.5877567&appid=818cbaf6cb7daa55c791ff656317de47";
 
                 return fetchTemperatureJSON(url);
 
@@ -263,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
         }
         writer.flush();
 
-        String weatherDataJson = new String(byteArrayOutputStream.toString());
+        String weatherDataJson = byteArrayOutputStream.toString();
 
         try {
 
@@ -278,40 +293,6 @@ public class MainActivity extends AppCompatActivity {
         return currentTemperature;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the main; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            //open About app activity
-            case R.id.about:
-                Intent openAbout = new Intent(getApplicationContext(),
-                        AboutActivity.class);
-                startActivity(openAbout);
-                return true;
-            //Launches Dawson Computer Science web page
-            case R.id.dawson:
-                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.dawsoncollege.qc.ca/computer-science-technology/"));
-                startActivity(i);
-                return true;
-            //Open last viewed quote
-            case R.id.settings:
-                //open settings activity
-                Intent openSettings = new Intent(getApplicationContext(),
-                        SettingsActivity.class);
-                startActivity(openSettings);
-                return true;
-            default:
-                return false;
-        }
-
-    }
 
 
 }

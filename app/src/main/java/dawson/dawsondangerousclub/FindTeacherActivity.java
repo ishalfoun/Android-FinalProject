@@ -21,7 +21,6 @@ import java.util.List;
 
 import teacher.Teacher;
 
-
 public class FindTeacherActivity extends AppCompatActivity {
     private EditText firstNameTextView;
     private EditText lastNameTextView;

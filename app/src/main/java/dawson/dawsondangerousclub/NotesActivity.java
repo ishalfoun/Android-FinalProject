@@ -20,7 +20,7 @@ import notes.Note;
 import notes.NotesDatabaseHelper;
 import utilities.ListViewNoteAdapter;
 
-public class NotesActivity extends AppCompatActivity {
+public class NotesActivity extends OptionsMenu {
     private NotesDatabaseHelper database;
     private List<Note> noteList;
     @Override
@@ -44,46 +44,6 @@ public class NotesActivity extends AppCompatActivity {
     ListViewNoteAdapter adapter = new ListViewNoteAdapter(this,noteList);
     ListView list = (ListView) this.findViewById(R.id.notesListView);
     list.setAdapter(adapter);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.notes, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.addNoteMenuItem:
-                createNewNote();
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    private void createNewNote(){
-        final EditText editText = new EditText(this);
-        AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle(R.string.new_note_title)
-                .setView(editText)
-                .setPositiveButton(R.string.create_note, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if(database.insertNote(String.valueOf(editText.getText()))){
-                            Toast.makeText(NotesActivity.this,R.string.note_added,Toast.LENGTH_SHORT).show();
-                            loadList();
-                        }
-                        else{
-                            Toast.makeText(NotesActivity.this,R.string.note_error,Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                })
-                .setNegativeButton(R.string.cancel, null)
-                .create();
-        dialog.show();
     }
 
     public void onDelete(){

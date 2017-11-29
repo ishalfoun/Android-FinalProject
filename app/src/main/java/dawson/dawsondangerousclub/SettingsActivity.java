@@ -1,51 +1,87 @@
 package dawson.dawsondangerousclub;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
-public class SettingsActivity extends AppCompatActivity {
+import java.util.Calendar;
+
+public class SettingsActivity extends OptionsMenu {
+
+    private EditText firstName;
+    private EditText lastName;
+    private EditText email;
+    private EditText pw;
+    SharedPreferences prefs = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        firstName = (EditText) findViewById(R.id.firstNameET);
+        lastName = (EditText) findViewById(R.id.lastNameET);
+        email = (EditText) findViewById(R.id.emailET);
+        pw = (EditText) findViewById(R.id.pwET);
+
+        prefs = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
+        firstName.setText(prefs.getString("firstname", ""));
+        lastName.setText(prefs.getString("lastname", ""));
+        email.setText(prefs.getString("email", ""));
+        pw.setText(prefs.getString("pw", ""));
+    }
+
+    public void onSubmit(View v)
+    {
+        prefs = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("firstname", firstName.getText().toString() );
+        editor.putString("lastname", lastName.getText().toString());
+        editor.putString("email", email.getText().toString());
+        editor.putString("pw", pw.getText().toString());
+        editor.putString("stamp", Calendar.getInstance().getTime().toString());
+        editor.commit();
+        this.finish();
+    }
+
+    //launch a dialog to confirm or discard
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage(R.string.settings_message)
+                .setTitle(R.string.settings_title);
+
+        builder.setPositiveButton(R.string.settings_confirm, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                onSubmit(null);
+            }
+        });
+        builder.setNegativeButton(R.string.settings_discard, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                finish();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the main; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-
-        // remove about because we don't need it here
+        super.onCreateOptionsMenu(menu);
         menu.removeItem(R.id.settings);
-
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            //open About app activity
-            case R.id.about:
-                Intent openAbout = new Intent(getApplicationContext(),
-                        AboutActivity.class);
-                startActivity(openAbout);
-                return true;
-            //Launches Dawson Computer Science web page
-            case R.id.dawson:
-                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.dawsoncollege.qc.ca/computer-science-technology/"));
-                startActivity(i);
-                return true;
-            default:
-                return false;
-        }
-
-    }
 }
