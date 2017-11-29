@@ -1,0 +1,149 @@
+package teacher;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+/**
+ * Created by Jacob on 2017-11-28.
+ */
+
+public class Teacher implements Parcelable {
+    private String first_name;
+    private String last_name;
+    private String full_name;
+    private String email;
+    private String office;
+    private String local;
+    private String website;
+    private String bio;
+    private String image;
+
+    public Teacher(){
+    }
+
+    public Teacher(String first_name, String last_name, String full_name, String email, String office, String local, String website, String bio, String image) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.full_name = full_name;
+        this.email = email;
+        this.office = office;
+        this.local = local;
+        this.website = website;
+        this.bio = bio;
+        this.image = image;
+    }
+
+    protected Teacher(Parcel in) {
+        first_name = in.readString();
+        last_name = in.readString();
+        full_name = in.readString();
+        email = in.readString();
+        office = in.readString();
+        local = in.readString();
+        website = in.readString();
+        bio = in.readString();
+        image = in.readString();
+    }
+
+    public static final Creator<Teacher> CREATOR = new Creator<Teacher>() {
+        @Override
+        public Teacher createFromParcel(Parcel in) {
+            return new Teacher(in);
+        }
+
+        @Override
+        public Teacher[] newArray(int size) {
+            return new Teacher[size];
+        }
+    };
+
+    public String getFirst_name() {
+        return first_name;
+    }
+
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
+    }
+
+    public String getFull_name() {
+        return full_name;
+    }
+
+    public void setFull_name(String full_name) {
+        this.full_name = full_name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getOffice() {
+        return office;
+    }
+
+    public void setOffice(String office) {
+        this.office = office;
+    }
+
+    public String getLocal() {
+        return local;
+    }
+
+    public void setLocal(String local) {
+        this.local = local;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(this.first_name);
+        parcel.writeString(this.last_name);
+        parcel.writeString(this.full_name);
+        parcel.writeString(this.email);
+        parcel.writeString(this.office);
+        parcel.writeString(this.local);
+        parcel.writeString(this.website);
+        parcel.writeString(this.bio);
+        parcel.writeString(this.image);
+    }
+}
