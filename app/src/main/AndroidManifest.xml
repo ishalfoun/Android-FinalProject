@@ -34,7 +34,8 @@
         <activity android:name=".AcademicCalendarActivity" />
         <activity android:name=".NotesActivity" />
         <activity android:name=".TeacherContactFragment" />
-        <activity android:name=".ChoseTeacherActivity"></activity>
+        <activity android:name=".ChoseTeacherActivity" />
+        <activity android:name=".FindFriendsActivity"></activity>
     </application>
 
 </manifest>
