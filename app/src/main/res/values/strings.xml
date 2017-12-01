@@ -33,6 +33,15 @@
     <string name="create_note">Create</string>
     <string name="note_added">Note added.</string>
     <string name="note_error">Error creating your note.</string>
+
+    <string name="firstname">Name</string>
+    <string name="lastname">Last Name</string>
+    <string name="search">Find</string>
+    <string name="exact">Exact Name</string>
+    <string name="teacher_no_names">Invalid Input: Insert at least one name.</string>
+    <string name="no_teacher_found">No Teachers Found</string>
+    <string name="no_teachers_input">Please input a first or last name.</string>
+
     <string name="settings_message">You are leaving the settings. Save now?</string>
     <string name="settings_title">Warning</string>
     <string name="settings_confirm">Confirm</string>
