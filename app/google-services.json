@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "276691449536",
+    "firebase_url": "https://teacherdabase.firebaseio.com",
+    "project_id": "teacherdabase",
+    "storage_bucket": "teacherdabase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:276691449536:android:a9bdb2afb19ac45b",
+        "android_client_info": {
+          "package_name": "dawson.dawsondangerousclub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "276691449536-uisq5kjfskegomoq50klj37r4dnsadk3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dawson.dawsondangerousclub",
+            "certificate_hash": "8fe7b999ac4ddb817811dc1bae244ba3b2d1a015"
+          }
+        },
+        {
+          "client_id": "276691449536-0mauji7n7tpo8o7iqt6udt1s4p9lqocj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOZV4d0mj0jPiyGxFQBm_HPrPGV1ET630"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "276691449536-0mauji7n7tpo8o7iqt6udt1s4p9lqocj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

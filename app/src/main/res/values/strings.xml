@@ -1,3 +1,50 @@
 <resources>
     <string name="app_name">DawsonDangerousClub</string>
+    <string name="about_menu_item">About</string>
+    <string name="dawson_menu_item">Dawson </string>
+    <string name="settings_menu_item">Settings</string>
+    <string name="about_app">This line is supposed to talk about what our app does (TBD). \n \n By </string>
+    <string name="about_app_title">Dawson</string>
+    <string name="issak">Issak Shalfoun</string>
+    <string name="jacob">Jacob Riendeau</string>
+    <string name="theo">Theodore Acco - Thomas</string>
+    <string name="course_id">420-518-DW &amp; 420-524-DW</string>
+    <string name="about_me_dialog">About</string>
+    <string name="about_me_issak">Grad Dawson CS 2017 Issak</string>
+    <string name="about_me_jacob">Grad Dawson CS 2017 Jacob</string>
+    <string name="about_me_theo">Grad Dawson CS 2017 Theo</string>
+
+    <string name="page_title">Cancelled Classes</string>
+    <string name="updated">Updated</string>
+    <string name="xml_error">xml error</string>
+    <string name="connection_error">connection error</string>
+    <string name="classTitle">Course Id:</string>
+    <string name="classDescription">Description:</string>
+    <string name="className">Course Name:</string>
+    <string name="classTeacher">Teacher:</string>
+    <string name="classNotes">Notes:</string>
+    <string name="classPubDate">Date Cancelled:</string>
+
+
+    <string name="preference_file_key">dawson.dawsondangerousclub</string>
+    <string name="add_note">New Note</string>
+    <string name="cancel">Cancel</string>
+    <string name="new_note_title">New Note</string>
+    <string name="create_note">Create</string>
+    <string name="note_added">Note added.</string>
+    <string name="note_error">Error creating your note.</string>
+
+    <string name="firstname">Name</string>
+    <string name="lastname">Last Name</string>
+    <string name="search">Find</string>
+    <string name="exact">Exact Name</string>
+    <string name="teacher_no_names">Invalid Input: Insert at least one name.</string>
+    <string name="no_teacher_found">No Teachers Found</string>
+    <string name="no_teachers_input">Please input a first or last name.</string>
+
+    <string name="settings_message">You are leaving the settings. Save now?</string>
+    <string name="settings_title">Warning</string>
+    <string name="settings_confirm">Confirm</string>
+    <string name="settings_discard">Discard</string>
+
 </resources>
