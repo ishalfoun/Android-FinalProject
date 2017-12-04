@@ -34,7 +34,6 @@ public class FindFriendsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_friends);
-
         friendsListView = (ListView)findViewById(R.id.friendsLV);
 
 
@@ -200,14 +199,6 @@ public class FindFriendsActivity extends AppCompatActivity {
         return sb.toString();
     }
 
-
-
-
-
-
-
-
-
-
+    
 
 }
