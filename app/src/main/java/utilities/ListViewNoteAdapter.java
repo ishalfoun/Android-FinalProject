@@ -1,7 +1,6 @@
 package utilities;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import dawson.dawsondangerousclub.ItemNoteActivity;
 import dawson.dawsondangerousclub.NotesActivity;
 import dawson.dawsondangerousclub.R;
 import notes.Note;
@@ -52,23 +50,15 @@ public class ListViewNoteAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View rowView = inflater.inflate(R.layout.listelement_notes,null);
         TextView textView = rowView.findViewById(R.id.noteListTextView);
-        textView.setText(elements.get(i).getNoteShort());
+        textView.setText(elements.get(i).getNote());
         ImageButton imageBttn =  (ImageButton) rowView.findViewById(R.id.add_noteImgBttn);
         //imageBttn.setId(elements.get(i).getId());
-        final int ID = elements.get(i).getId();
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, ItemNoteActivity.class);
-                intent.putExtra("note",ID);
-                context.startActivity(intent);
-            }
-        });
+        final int ii = i;
         imageBttn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NotesDatabaseHelper database = new NotesDatabaseHelper(context);
-                database.deleteNote(ID);
+                database.deleteNote(elements.get(ii).getId());
                 NotesActivity activity = (NotesActivity)context;
                 activity.onDelete();
             }

@@ -27,11 +27,4 @@ public class Note {
     public void setNote(String note) {
         this.note = note;
     }
-
-    public String getNoteShort(){
-        if (note.length() > 25){
-            return note.substring(0,24);
-        }
-        return note;
-    }
 }
