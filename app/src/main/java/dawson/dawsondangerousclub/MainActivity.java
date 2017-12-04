@@ -136,6 +136,9 @@ public class MainActivity extends OptionsMenu {
             case R.id.teamImgBttn:
                 startActivity(new Intent(MainActivity.this, AboutActivity.class));
                 break;
+            case R.id.findFriendsImgBttn:
+                startActivity(new Intent(MainActivity.this, FindFriendsActivity.class));
+                break;
 
         }
 

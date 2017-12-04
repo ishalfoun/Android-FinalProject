@@ -23,6 +23,7 @@ import utilities.ListViewNoteAdapter;
 public class NotesActivity extends OptionsMenu {
     private NotesDatabaseHelper database;
     private List<Note> noteList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,18 +33,17 @@ public class NotesActivity extends OptionsMenu {
     }
 
 
-
-    private void loadList(){
-    Cursor notes = database.getNotes();
-    noteList = new ArrayList<>();
-    if (notes.getCount() > 0){
-        while (notes.moveToNext()){
-            noteList.add(new Note(notes.getInt(0),notes.getString(1)));
+    private void loadList() {
+        Cursor notes = database.getNotes();
+        noteList = new ArrayList<>();
+        if (notes.getCount() > 0) {
+            while (notes.moveToNext()) {
+                noteList.add(new Note(notes.getInt(0), notes.getString(1)));
+            }
         }
-    }
-    ListViewNoteAdapter adapter = new ListViewNoteAdapter(this,noteList);
-    ListView list = (ListView) this.findViewById(R.id.notesListView);
-    list.setAdapter(adapter);
+        ListViewNoteAdapter adapter = new ListViewNoteAdapter(this, noteList);
+        ListView list = (ListView) this.findViewById(R.id.notesListView);
+        list.setAdapter(adapter);
     }
 
     public void createNewNote(View view){
@@ -70,5 +70,11 @@ public class NotesActivity extends OptionsMenu {
 
     public void onDelete(){
         loadList();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        return false;
     }
 }
