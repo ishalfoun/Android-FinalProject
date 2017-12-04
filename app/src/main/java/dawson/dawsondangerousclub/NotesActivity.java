@@ -46,28 +46,6 @@ public class NotesActivity extends OptionsMenu {
     list.setAdapter(adapter);
     }
 
-    public void createNewNote(View view){
-        final EditText editText = new EditText(this);
-        AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle(R.string.new_note_title)
-                .setView(editText)
-                .setPositiveButton(R.string.create_note, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if(database.insertNote(String.valueOf(editText.getText()))){
-                            Toast.makeText(NotesActivity.this,R.string.note_added,Toast.LENGTH_SHORT).show();
-                            loadList();
-                        }
-                        else{
-                            Toast.makeText(NotesActivity.this,R.string.note_error,Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                })
-                .setNegativeButton(R.string.cancel, null)
-                .create();
-        dialog.show();
-    }
-
     public void onDelete(){
         loadList();
     }
