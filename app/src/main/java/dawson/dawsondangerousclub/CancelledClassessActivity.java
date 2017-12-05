@@ -67,14 +67,16 @@ public class CancelledClassessActivity extends OptionsMenu implements ClassMenuF
         } else {
             errorTv.setText("No network connection available.");
         }
+        displayEntries(savedInstanceState);
     }
-    private void displayEntries()
+
+    private void displayEntries(Bundle savedInstanceState)
     {
         if (entries == null) {
             entries = new ArrayList<>();
             entries.add(new Entry());
         }
-        Log.d(MYTAG,  "enter displayentries 1st entry:"+entries.get(0).title);
+        //Log.d(MYTAG,  "enter displayentries 1st entry:"+entries.get(0).title);
         ClassMenuFragment menuFragment = new ClassMenuFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
@@ -82,13 +84,13 @@ public class CancelledClassessActivity extends OptionsMenu implements ClassMenuF
         args.putParcelableArrayList("entries", entries);
         menuFragment.setArguments(args);
 
-        //if (savedInstanceState == null) {
+        if (savedInstanceState == null) {
             ft.add(R.id.flContainer, menuFragment);
             ft.commit();
-//        } else {
-//            ft.replace(R.id.flContainer, menuFragment);
-//            ft.commit();
-//        }
+        } else {
+            ft.replace(R.id.flContainer, menuFragment);
+            ft.commit();
+        }
 
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
             ClassDetailFragment secondFragment = new ClassDetailFragment();
@@ -148,7 +150,7 @@ public class CancelledClassessActivity extends OptionsMenu implements ClassMenuF
 
         @Override
         protected void onPostExecute(String result) {
-            displayEntries();
+            displayEntries(null);
         }
 
         // Uploads XML from stackoverflow.com, parses it, and combines it with

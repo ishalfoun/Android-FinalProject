@@ -8,36 +8,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15dp"
-        android:text="TextView" />
+        android:text="" />
     <TextView
         android:id="@+id/classDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15dp"
-        android:text="TextView" />
+        android:text="" />
     <TextView
         android:id="@+id/className"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15dp"
-        android:text="TextView" />
+        android:text="" />
     <TextView
         android:id="@+id/classTeacher"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15dp"
-        android:text="TextView" />
+        android:text="" />
     <TextView
         android:id="@+id/classNotes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15dp"
-        android:text="TextView" />
+        android:text="" />
     <TextView
         android:id="@+id/classPubDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15dp"
-        android:text="TextView" />
+        android:text="" />
 
 </LinearLayout>

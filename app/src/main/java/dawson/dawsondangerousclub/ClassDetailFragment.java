@@ -29,6 +29,7 @@ public class ClassDetailFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -55,8 +56,10 @@ public class ClassDetailFragment extends Fragment {
         tvClassTeacher.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent i = new Intent(getContext(), TeacherContactActivity.class);
-                    i.putExtra("name", tvClassTeacher.getText());
+                    Intent i = new Intent(getContext(), FindTeacherActivity.class);
+                    String[] name = ((String)tvClassTeacher.getText()).split(" ");
+                    i.putExtra("firstname", name[1]);
+                    i.putExtra("lastname", name[2]);
                     startActivity(i);
                 }
             });
@@ -68,11 +71,13 @@ public class ClassDetailFragment extends Fragment {
 
     // Activity is calling this to update view on Fragment
     public void updateView(){
-        tvClassTitle.setText(getResources().getString(R.string.classTitle)+" "+entries.get(position).title);
+        if (entries != null) {
+            tvClassTitle.setText(getResources().getString(R.string.classTitle) + " " + entries.get(position).title);
 //        tvClassDescription.setText(getResources().getString(R.string.classDescription)+" "+entries.get(position).description);
-        tvClassName.setText(getResources().getString(R.string.className)+" "+entries.get(position).course);
-        tvClassTeacher.setText(getResources().getString(R.string.classTeacher)+" "+entries.get(position).teacher);
-        tvClassNotes.setText(getResources().getString(R.string.classNotes)+" "+entries.get(position).notes);
-        tvClassPubDate.setText(getResources().getString(R.string.classPubDate)+" "+entries.get(position).pubDate);
+            tvClassName.setText(getResources().getString(R.string.className) + " " + entries.get(position).course);
+            tvClassTeacher.setText(getResources().getString(R.string.classTeacher) + " " + entries.get(position).teacher);
+            tvClassNotes.setText(getResources().getString(R.string.classNotes) + " " + entries.get(position).notes);
+            tvClassPubDate.setText(getResources().getString(R.string.classPubDate) + " " + entries.get(position).pubDate);
+        }
     }
 }
