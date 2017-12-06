@@ -32,6 +32,14 @@ public class FindTeacherActivity extends AppCompatActivity {
         firstNameTextView = this.findViewById(R.id.firstNameEditText);
         lastNameTextView = this.findViewById(R.id.lastNameEditText);
         exactCheckBox = this.findViewById(R.id.exactCheckBox);
+
+        if (savedInstanceState == null)
+        {
+            String firstname = getIntent().getStringExtra("firstname");
+            String lastname = getIntent().getStringExtra("lastname");
+            firstNameTextView.setText(firstname);
+            lastNameTextView.setText(lastname);
+        }
     }
 
     public void findTeacher(View view) {

@@ -199,6 +199,5 @@ public class FindFriendsActivity extends AppCompatActivity {
         return sb.toString();
     }
 
-    
 
 }
