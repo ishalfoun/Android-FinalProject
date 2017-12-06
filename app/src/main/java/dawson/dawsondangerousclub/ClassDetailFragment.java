@@ -67,8 +67,8 @@ public class ClassDetailFragment extends Fragment {
                 //
                 //get friends:
                 ArrayList<String> friends = new ArrayList<>();
-                friends.add("friend1");
-                friends.add("friend2");
+                friends.add("friend1;email1");
+                friends.add("friend2;email2");
                 //
                 //
 
