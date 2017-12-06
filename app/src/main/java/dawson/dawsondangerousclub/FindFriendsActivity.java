@@ -34,7 +34,7 @@ public class FindFriendsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_friends);
-        friendsListView = (ListView)findViewById(R.id.friendsLV);
+        friendsListView = (ListView)findViewById(R.id.friendsList);
 
 
         friendsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -49,7 +49,7 @@ public class FindFriendsActivity extends AppCompatActivity {
      * This Async task gets the uv forecast via an open weather API.
      * It receives JSON data which is deciphered and displayed to the user.
      */
-    private class getFriendsAsync extends AsyncTask<String, Void, String> {
+   /* private class getFriendsAsync extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... location) {
@@ -81,7 +81,7 @@ public class FindFriendsActivity extends AppCompatActivity {
 
         }
 
-    }
+    }*/
 
     /**
      * GET request to the weather API, returns JSON.

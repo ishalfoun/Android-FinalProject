@@ -47,4 +47,24 @@
     <string name="settings_confirm">Confirm</string>
     <string name="settings_discard">Discard</string>
 
+    <string name="cancellations">Cancellations</string>
+    <string name="find_teacher">Find Teacher</string>
+    <string name="add_to_calendar">Add to Calendar</string>
+    <string name="notes">Notes</string>
+    <string name="weather">Weather</string>
+    <string name="academic_calendar">Academic Calendar</string>
+    <string name="find_friends">Find Friends</string>
+    <string name="who_is_free">Who\'s Free</string>
+
+    <string name="dawson_logo">Dawson Logo</string>
+    <string name="team_logo">Team Logo</string>
+
+
+
+
+
+
+
+
+
 </resources>
