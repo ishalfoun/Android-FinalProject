@@ -2,11 +2,9 @@ package dawson.dawsondangerousclub;
 
 import android.content.DialogInterface;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -18,7 +16,6 @@ import java.util.List;
 
 import notes.Note;
 import notes.NotesDatabaseHelper;
-import utilities.ListViewNoteAdapter;
 
 public class NotesActivity extends OptionsMenu {
     private NotesDatabaseHelper database;
@@ -30,8 +27,15 @@ public class NotesActivity extends OptionsMenu {
         setContentView(R.layout.activity_notes);
         database = new NotesDatabaseHelper(this);
         loadList();
-    }
 
+        FloatingActionButton myFab = (FloatingActionButton) findViewById(R.id.fab);
+        myFab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                createNewNote();
+            }
+        });
+
+    }
 
     private void loadList() {
         Cursor notes = database.getNotes();
@@ -46,7 +50,7 @@ public class NotesActivity extends OptionsMenu {
         list.setAdapter(adapter);
     }
 
-    public void createNewNote(View view){
+    public void createNewNote(){
         final EditText editText = new EditText(this);
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.new_note_title)
