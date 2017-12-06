@@ -17,12 +17,12 @@ public class TeacherContactFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.activity_teacher_contact, container, false);
         Teacher teacher = getArguments().getParcelable("teacher");
-        TextView fullName = v.findViewById(R.id.nameTextView);
-        TextView email = v.findViewById(R.id.emailTextView);
-        TextView office = v.findViewById(R.id.officeTextView);
-        TextView local = v.findViewById(R.id.localTextView);
-        TextView website = v.findViewById(R.id.websiteTextView);
-        TextView bio = v.findViewById(R.id.bioTextView);
+        TextView fullName = (TextView)v.findViewById(R.id.nameTextView);
+        TextView email = (TextView)v.findViewById(R.id.emailTextView);
+        TextView office = (TextView)v.findViewById(R.id.officeTextView);
+        TextView local = (TextView)v.findViewById(R.id.localTextView);
+        TextView website = (TextView)v.findViewById(R.id.websiteTextView);
+        TextView bio = (TextView)v.findViewById(R.id.bioTextView);
         fullName.setText(teacher.getFull_name());
         email.setText(teacher.getEmail());
         office.setText(teacher.getOffice());

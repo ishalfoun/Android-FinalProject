@@ -6,14 +6,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="dawson.dawsondangerousclub.CancelledClassessActivity"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="@drawable/cancelbg">
 
 
     <TextView
         android:id="@+id/errors"
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:text="" />
     <FrameLayout
         android:id="@+id/flContainer"

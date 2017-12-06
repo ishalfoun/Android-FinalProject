@@ -27,6 +27,7 @@
 
 
     <string name="preference_file_key">dawson.dawsondangerousclub</string>
+    <string name="notes_title">My Notes</string>
     <string name="add_note">New Note</string>
     <string name="cancel">Cancel</string>
     <string name="new_note_title">New Note</string>
@@ -61,9 +62,19 @@
     <string name="dawson_logo">Dawson Logo</string>
     <string name="team_logo">Team Logo</string>
 
+    <string name="add_event">Add Event To Calendar</string>
+    <string name="event_title">Enter Title:</string>
+    <string name="event_desc">Enter Description:</string>
+    <string name="set_start_time">Set Start Time</string>
+    <string name="set_start_date">Set Start Date</string>
+    <string name="set_end_time">Set End Time</string>
+    <string name="set_end_date">Set End Date</string>
+    <string name="add_event_btn">Add to Calendar</string>
+    <string name="title_activity_test">testActivity</string>
 
-
-
+    <string name="forecast_pic_desc">Weather Condition Image</string>
+    <string name="uv_forecast">UV Forecast</string>
+    <string name="forecast_search">Find</string>
 
 
 
