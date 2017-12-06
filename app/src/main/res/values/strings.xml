@@ -46,5 +46,7 @@
     <string name="settings_title">Warning</string>
     <string name="settings_confirm">Confirm</string>
     <string name="settings_discard">Discard</string>
+    <string name="settings_pw_short">Password must be at least 6 characters long</string>
+    <string name="settings_invalid_email">Invalid Email Address</string>
 
 </resources>
