@@ -33,10 +33,11 @@
         <activity android:name=".SettingsActivity" />
         <activity android:name=".AcademicCalendarActivity" />
         <activity android:name=".NotesActivity" />
-        <activity android:name=".ItemNoteActivity"/>
+        <activity android:name=".ItemNoteActivity" />
         <activity android:name=".TeacherContactFragment" />
         <activity android:name=".ChoseTeacherActivity" />
-        <activity android:name=".FindFriendsActivity"></activity>
+        <activity android:name=".FindFriendsActivity" />
+        <activity android:name=".FindFriendsInCourse"></activity>
     </application>
 
 </manifest>

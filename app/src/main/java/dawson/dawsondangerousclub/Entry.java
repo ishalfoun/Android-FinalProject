@@ -13,12 +13,12 @@ public class Entry implements Parcelable
     public final String pubDate;
 
     public Entry() {
-        this.title = "test";
-        this.description =  "test";
-        this.course =  "test";
-        this.teacher =  "test";
-        this.notes =  "test";
-        this.pubDate =  "test";
+        this.title = "";
+        this.description =  "";
+        this.course =  "";
+        this.teacher =  "";
+        this.notes =  "";
+        this.pubDate =  "";
     }
 
     public Entry(String title, String description, String course,

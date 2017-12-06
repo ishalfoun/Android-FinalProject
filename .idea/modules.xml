@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../../../the_b/Desktop/the_b/Desktop/Android/finalproject/dawsonApp-DangerousClub/DawsonDangerousClub.iml" filepath="$PROJECT_DIR$/../../../the_b/Desktop/the_b/Desktop/Android/finalproject/dawsonApp-DangerousClub/DawsonDangerousClub.iml" />
+      <module fileurl="file://C:\Users\the_b\Desktop\the_b\Desktop\Android\finalproject\dawsonApp-DangerousClub\DawsonDangerousClub.iml" filepath="C:\Users\the_b\Desktop\the_b\Desktop\Android\finalproject\dawsonApp-DangerousClub\DawsonDangerousClub.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../../../the_b/Desktop/Android/finalproject/dawsonApp-DangerousClub/app/app.iml" filepath="$PROJECT_DIR$/../../../the_b/Desktop/Android/finalproject/dawsonApp-DangerousClub/app/app.iml" />
+      <module fileurl="file://C:\Users\the_b\Desktop\Android\finalproject\dawsonApp-DangerousClub\app\app.iml" filepath="C:\Users\the_b\Desktop\Android\finalproject\dawsonApp-DangerousClub\app\app.iml" />
+      <module fileurl="file://C:\Users\1241616\Desktop\dawsonApp-DangerousClub\app\app.iml" filepath="C:\Users\1241616\Desktop\dawsonApp-DangerousClub\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/dawsonApp-DangerousClub.iml" filepath="$PROJECT_DIR$/dawsonApp-DangerousClub.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../../../the_b/Desktop/Android/finalproject/dawsonApp-DangerousClub/dawsonApp-DangerousClub.iml" filepath="$PROJECT_DIR$/../../../the_b/Desktop/Android/finalproject/dawsonApp-DangerousClub/dawsonApp-DangerousClub.iml" />
+      <module fileurl="file://C:\Users\the_b\Desktop\Android\finalproject\dawsonApp-DangerousClub\dawsonApp-DangerousClub.iml" filepath="C:\Users\the_b\Desktop\Android\finalproject\dawsonApp-DangerousClub\dawsonApp-DangerousClub.iml" />
+      <module fileurl="file://C:\Users\1241616\Desktop\dawsonApp-DangerousClub\dawsonApp-DangerousClub.iml" filepath="C:\Users\1241616\Desktop\dawsonApp-DangerousClub\dawsonApp-DangerousClub.iml" />
     </modules>
   </component>
 </project>
