@@ -1,5 +1,6 @@
 package dawson.dawsondangerousclub;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 import dawson.dawsondangerousclub.R;
 
@@ -26,10 +29,10 @@ public class ClassDetailFragment extends Fragment {
     TextView tvClassPubDate;
     ArrayList<Entry> entries;
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -50,6 +53,43 @@ public class ClassDetailFragment extends Fragment {
         Log.d(MYTAG,  "got the entries in detailfrag: "+" "+ (entries != null ? entries.get(0).title : "empty"));
 
         tvClassTitle = (TextView) view.findViewById(R.id.classTitle);
+        tvClassTitle.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                String[] courseSplit = ((String)tvClassTitle.getText()).split(" ");
+                String course = courseSplit[2];
+                String section = courseSplit[3];
+                Log.d(MYTAG,"long click: "+course+" "+section);
+
+
+                //INSERT API CODE HERE FOR FRIENDS IN THIS COURSE
+                //
+                //get friends:
+                ArrayList<String> friends = new ArrayList<>();
+                friends.add("friend1");
+                friends.add("friend2");
+                //
+                //
+
+                //show friends:
+                if (friends.size()>0)
+                {
+                    Intent intent = new Intent(view.getContext(), FindFriendsInCourse.class);
+                    intent.putStringArrayListExtra("friends", friends);
+                    startActivity(intent);
+                }
+                else  //if nothing found:
+                {
+                    AlertDialog.Builder alertNoFriends = new AlertDialog.Builder(getActivity());
+                    alertNoFriends.setMessage("No one available")
+                            .setTitle("Friends in this course");
+                    alertNoFriends.create().show();
+                }
+                return false;
+            }
+        });
+
 		tvClassDescription = (TextView) view.findViewById(R.id.classDescription);
 		tvClassName = (TextView) view.findViewById(R.id.className);
 		tvClassTeacher = (TextView) view.findViewById(R.id.classTeacher);
