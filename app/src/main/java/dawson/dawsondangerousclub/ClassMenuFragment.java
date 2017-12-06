@@ -40,21 +40,8 @@ public class ClassMenuFragment extends Fragment {
                 entries = getArguments().getParcelableArrayList("entries");
             }
         }
-        //listClassTitle = entries.toArray(new String[entries.size()]);
 
         Log.d("MYTAG",  "got the entries in menufrag: "+ (entries != null ? entries.get(0).title : "empty"));
-
-//		//TODO: need to insert array of classes here
-//		listClassTitle =  getResources().getStringArray(R.array.classList);
-//		listClassDescription =  getResources().getStringArray(R.array.classList);
-//		listClassName =  getResources().getStringArray(R.array.classList);
-//		listClassTeacher =  getResources().getStringArray(R.array.classList);
-//		listClassNotes =  getResources().getStringArray(R.array.classList);
-//		listClassPubDate =  getResources().getStringArray(R.array.classList);
-//
-//        adapter = new ClassAdapter(getContext(), listClassTitle, listClassDescription,
-//						listClassName, listClassTeacher, listClassNotes,
-//						listClassPubDate, listener);
         adapter = new ClassAdapter(getContext(), entries, listener);
     }
 
@@ -70,6 +57,7 @@ public class ClassMenuFragment extends Fragment {
 
         ListView lvItems = (ListView) view.findViewById(R.id.listView);
         lvItems.setAdapter(adapter);
+
     }
 
     @Override

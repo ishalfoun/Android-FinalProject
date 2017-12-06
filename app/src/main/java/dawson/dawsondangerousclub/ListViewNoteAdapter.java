@@ -1,4 +1,4 @@
-package utilities;
+package dawson.dawsondangerousclub;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,10 +11,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.List;
-
-import dawson.dawsondangerousclub.ItemNoteActivity;
-import dawson.dawsondangerousclub.NotesActivity;
-import dawson.dawsondangerousclub.R;
 import notes.Note;
 import notes.NotesDatabaseHelper;
 
@@ -51,7 +47,7 @@ public class ListViewNoteAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View rowView = inflater.inflate(R.layout.listelement_notes,null);
-        TextView textView = rowView.findViewById(R.id.noteListTextView);
+        TextView textView = (TextView)rowView.findViewById(R.id.noteListTextView);
         textView.setText(elements.get(i).getNoteShort());
         ImageButton imageBttn =  (ImageButton) rowView.findViewById(R.id.add_noteImgBttn);
         //imageBttn.setId(elements.get(i).getId());

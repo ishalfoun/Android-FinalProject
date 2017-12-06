@@ -33,7 +33,7 @@ public class ChoseTeacherActivity extends AppCompatActivity {
         fullnames.add(t.getFull_name());
     }
         ArrayAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,android.R.id.text1,fullnames);
-        ListView listView = this.findViewById(R.id.teacherListView);
+        ListView listView = (ListView)findViewById(R.id.teacherListView);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(onClickTeacher);
         adapter.notifyDataSetChanged();

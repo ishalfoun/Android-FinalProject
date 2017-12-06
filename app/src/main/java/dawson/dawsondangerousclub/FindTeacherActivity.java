@@ -29,9 +29,17 @@ public class FindTeacherActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_teacher);
-        firstNameTextView = this.findViewById(R.id.firstNameEditText);
-        lastNameTextView = this.findViewById(R.id.lastNameEditText);
-        exactCheckBox = this.findViewById(R.id.exactCheckBox);
+        firstNameTextView = (EditText)findViewById(R.id.firstNameEditText);
+        lastNameTextView = (EditText)findViewById(R.id.lastNameEditText);
+        exactCheckBox = (CheckBox)findViewById(R.id.exactCheckBox);
+
+        if (savedInstanceState == null)
+        {
+            String firstname = getIntent().getStringExtra("firstname");
+            String lastname = getIntent().getStringExtra("lastname");
+            firstNameTextView.setText(firstname);
+            lastNameTextView.setText(lastname);
+        }
     }
 
     public void findTeacher(View view) {

@@ -1,114 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#17436b"
     android:orientation="vertical">
 
-    <ImageButton
-        android:id="@+id/dawsonImgBttn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:onClick="openActivity"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/dawson" />
-
-    <ImageButton
-        android:id="@+id/teamImgBttn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:onClick="openActivity"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/dangerousclub" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="2"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/cancellationsImgBttn"
-            android:layout_weight="1"
+        <ImageButton
+            android:id="@+id/dawsonImgBttn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:paddingBottom="50dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingTop="50dp"
+            android:background="#17436b"
             android:onClick="openActivity"
-            android:text="Cancellations"/>
 
-        <Button
-            android:id="@+id/teacherImgBttn"
-            android:layout_weight="1"
+            android:contentDescription="@string/dawson_logo"
+            app:srcCompat="@drawable/dawson" />
+
+        <ImageButton
+            android:id="@+id/teamImgBttn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:background="#17436b"
             android:onClick="openActivity"
-            android:text="Find Teacher"/>
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/team_logo"
+            app:srcCompat="@drawable/dangerousclub" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <Button
+                    android:id="@+id/cancellationsImgBttn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/button_vertical_margin_size"
+                    android:paddingBottom="@dimen/button_vertical_margin_size"
+                    android:layout_weight="1"
+                    android:background="@color/dawson_colour_1"
+                    android:onClick="openActivity"
+                    android:text="@string/cancellations"
+                    android:textSize="@dimen/button_text_size"
+                    style="?android:attr/borderlessButtonStyle" />
+
+                <Button
+                    android:id="@+id/teacherImgBttn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/button_vertical_margin_size"
+                    android:paddingBottom="@dimen/button_vertical_margin_size"
+                    android:layout_weight="1"
+                    android:background="@color/dawson_colour_2"
+                    android:onClick="openActivity"
+                    android:text="@string/find_teacher"
+                    android:textSize="@dimen/button_text_size"
+                    style="?android:attr/borderlessButtonStyle" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <Button
+                    android:id="@+id/calendarImgBttn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/button_vertical_margin_size"
+                    android:paddingBottom="@dimen/button_vertical_margin_size"
+                    android:layout_weight="1"
+                    android:background="@color/dawson_colour_3"
+                    android:onClick="openActivity"
+                    android:text="@string/add_to_calendar"
+                    android:textSize="@dimen/button_text_size"
+                    style="?android:attr/borderlessButtonStyle" />
+                <Button
+                    android:id="@+id/notesImgBttn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/button_vertical_margin_size"
+                    android:paddingBottom="@dimen/button_vertical_margin_size"
+                    android:layout_weight="1"
+                    android:background="@color/dawson_colour_4"
+                    android:onClick="openActivity"
+                    android:text="@string/notes"
+                    android:textSize="@dimen/button_text_size"
+                    style="?android:attr/borderlessButtonStyle" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <Button
+                    android:id="@+id/weatherImgBttn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/button_vertical_margin_size"
+                    android:paddingBottom="@dimen/button_vertical_margin_size"
+                    android:layout_weight="1"
+                    android:background="@color/dawson_colour_5"
+                    android:onClick="openActivity"
+                    android:text="@string/weather"
+                    android:textSize="@dimen/button_text_size"
+                    style="?android:attr/borderlessButtonStyle" />
+                <Button
+                    android:id="@+id/academicCalendarImgBttn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/button_vertical_margin_size"
+                    android:paddingBottom="@dimen/button_vertical_margin_size"
+                    android:layout_weight="1"
+                    android:background="@color/dawson_colour_1"
+                    android:onClick="openActivity"
+                    android:text="@string/academic_calendar"
+                    android:textSize="@dimen/button_text_size"
+                    style="?android:attr/borderlessButtonStyle" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <Button
+                    android:id="@+id/findFriendsImgBttn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/button_vertical_margin_size"
+                    android:paddingBottom="@dimen/button_vertical_margin_size"
+                    android:layout_weight="1"
+                    android:background="@color/dawson_colour_2"
+                    android:onClick="openActivity"
+                    android:text="@string/find_friends"
+                    android:textSize="@dimen/button_text_size"
+                    style="?android:attr/borderlessButtonStyle" />
+
+                <Button
+                    android:id="@+id/whosFreeImgBttn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/button_vertical_margin_size"
+                    android:paddingBottom="@dimen/button_vertical_margin_size"
+                    android:layout_weight="1"
+                    android:background="@color/dawson_colour_3"
+                    android:onClick="openActivity"
+                    android:text="@string/who_is_free"
+                    android:textSize="@dimen/button_text_size"
+                    style="?android:attr/borderlessButtonStyle" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tempTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="40sp" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <Button
-            android:id="@+id/calendarImgBttn"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="openActivity"
-            android:text="Add to Calendar"/>
-
-        <Button
-            android:id="@+id/notesImgBttn"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="openActivity"
-            android:text="Notes"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <Button
-            android:id="@+id/weatherImgBttn"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="openActivity"
-            android:text="Weather"/>
-
-        <Button
-            android:id="@+id/academicCalendarImgBttn"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="openActivity"
-            android:text="Academic Calendar"/>
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tempTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed"
-        android:gravity="center"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:text="Temp should be here."
-        android:textColor="@android:color/black"
-        android:textSize="40sp" />
-
-
-
-
-</LinearLayout>
+</ScrollView>
