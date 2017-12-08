@@ -29,6 +29,8 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import dawson.classes.GPSTracker;
+
 public class MainActivity extends OptionsMenu {
 
     private static final int NETIOBUFFER = 1024;
@@ -93,8 +95,7 @@ public class MainActivity extends OptionsMenu {
 
     }
 
-    private void firstLaunchPrefs()
-    {
+    private void firstLaunchPrefs(){
         prefs = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
         if ( prefs.getString("email", "undefined").equals("undefined"))
         {

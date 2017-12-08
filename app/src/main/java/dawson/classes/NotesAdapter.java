@@ -1,8 +1,7 @@
-package utilities;
+package dawson.classes;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,22 +11,22 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import dawson.classes.Note;
+import dawson.classes.NotesDatabaseHelper;
 import dawson.dawsondangerousclub.ItemNoteActivity;
 import dawson.dawsondangerousclub.NotesActivity;
 import dawson.dawsondangerousclub.R;
-import notes.Note;
-import notes.NotesDatabaseHelper;
 
 /**
  * Created by 1537385 on 11/20/2017.
  */
 
-public class ListViewNoteAdapter extends BaseAdapter {
+public class NotesAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater inflater;
     private List<Note> elements;
 
-    public ListViewNoteAdapter(Context context, List<Note> elements) {
+    public NotesAdapter(Context context, List<Note> elements) {
         this.context = context;
         this.elements = elements;
         this.inflater = LayoutInflater.from(context);
@@ -51,7 +50,7 @@ public class ListViewNoteAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View rowView = inflater.inflate(R.layout.listelement_notes,null);
-        TextView textView = rowView.findViewById(R.id.noteListTextView);
+        TextView textView = (TextView)rowView.findViewById(R.id.noteListTextView);
         textView.setText(elements.get(i).getNoteShort());
         ImageButton imageBttn =  (ImageButton) rowView.findViewById(R.id.add_noteImgBttn);
         //imageBttn.setId(elements.get(i).getId());

@@ -1,8 +1,5 @@
 package dawson.dawsondangerousclub;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +10,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-import teacher.Teacher;
+import dawson.classes.Teacher;
 
 public class ChoseTeacherActivity extends AppCompatActivity {
     private List<Teacher> teachers;
@@ -33,7 +30,7 @@ public class ChoseTeacherActivity extends AppCompatActivity {
         fullnames.add(t.getFull_name());
     }
         ArrayAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,android.R.id.text1,fullnames);
-        ListView listView = this.findViewById(R.id.teacherListView);
+        ListView listView = (ListView)findViewById(R.id.teacherListView);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(onClickTeacher);
         adapter.notifyDataSetChanged();

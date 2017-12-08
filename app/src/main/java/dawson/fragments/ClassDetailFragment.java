@@ -1,4 +1,4 @@
-package dawson.dawsondangerousclub;
+package dawson.fragments;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -12,9 +12,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
+import dawson.classes.Entry;
+import dawson.dawsondangerousclub.FindFriendsInCourse;
+import dawson.dawsondangerousclub.FindTeacherActivity;
 import dawson.dawsondangerousclub.R;
 
 

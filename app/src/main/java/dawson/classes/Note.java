@@ -1,4 +1,4 @@
-package notes;
+package dawson.classes;
 
 /**
  * Created by 1537385 on 11/20/2017.

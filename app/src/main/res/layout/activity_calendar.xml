@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:paddingTop="30dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:orientation="vertical"
+    android:background="@drawable/calendarbg"
     tools:context="dawson.dawsondangerousclub.CalendarActivity">
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Event to Calendar"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+        android:gravity="center"
+        android:text="@string/add_event"
+        android:paddingBottom="15dp"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,8 +31,11 @@
             android:id="@+id/titleLbl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:layout_weight="1"
-            android:text="Title:"/>
+            android:text="@string/event_title"
+            android:textColor="@color/black"/>
+
         <EditText
             android:id="@+id/titleET"
             android:layout_width="match_parent"
@@ -45,15 +55,65 @@
             android:id="@+id/descriptionLbl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:layout_weight="1"
-            android:text="Description :" />
+            android:text="@string/event_desc"
+            android:textColor="@color/black"
+            />
+
         <EditText
             android:id="@+id/descriptionET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName"/>
+            android:inputType="textPersonName" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvStartDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/buttonStartDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClickStartDate"
+            android:text="@string/set_start_date" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvEndDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/buttonEndDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClickEndDate"
+            android:text="@string/set_end_date" />
 
     </LinearLayout>
 
@@ -66,79 +126,41 @@
             android:id="@+id/tvStartTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:layout_weight="1"
-            android:text="" />
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/buttonStartTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="onClickStartTime"
-            android:layout_weight="1"
-            android:text="Set Start time" />
+            android:text="@string/set_start_time" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tvStartDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="" />
-
-        <Button
-            android:id="@+id/buttonStartDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="onClickStartDate"
-            android:text="Set Start Date" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingBottom="20dp">
 
         <TextView
             android:id="@+id/tvEndTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:layout_weight="1"
-            android:text="" />
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/buttonEndTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="onClickEndTime"
-            android:layout_weight="1"
-            android:text="Set End time" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tvEndDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="" />
-
-        <Button
-            android:id="@+id/buttonEndDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onClickEndDate"
-            android:layout_weight="1"
-            android:text="Set End Date" />
+            android:text="@string/set_end_time" />
 
     </LinearLayout>
 
@@ -147,7 +169,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onSubmit"
-        android:text="Add to Calendar" />
+        android:text="@string/add_event_btn" />
 
     <TextView
         android:id="@+id/errors"

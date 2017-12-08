@@ -1,5 +1,6 @@
 package dawson.dawsondangerousclub;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,7 +29,9 @@ public class FindFriendsActivity extends AppCompatActivity {
 
     ListView friendsListView;
     ArrayList<String> friends;
-    private static final String FRIEND_URL = "http://api.openweathermap.org/data/2.5/forecast?";
+    SharedPreferences prefs;
+    String user_email, user_password;
+    private static final String FIND_FRIENDS_URL = "https://dawsondangerousclub2.herokuapp.com/api/api/allfriends?";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,9 @@ public class FindFriendsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_find_friends);
         friendsListView = (ListView)findViewById(R.id.friendsList);
 
+        prefs = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
+        user_email = prefs.getString("email", "theo@gmail.com");
+        user_password = prefs.getString("pw", "dawson");
 
         friendsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
@@ -49,18 +55,15 @@ public class FindFriendsActivity extends AppCompatActivity {
      * This Async task gets the uv forecast via an open weather API.
      * It receives JSON data which is deciphered and displayed to the user.
      */
-   /* private class getFriendsAsync extends AsyncTask<String, Void, String> {
+   private class getFriendsAsync extends AsyncTask<Void, Void, String> {
 
         @Override
-        protected String doInBackground(String... location) {
+        protected String doInBackground(Void... voids) {
             try {
-
-                String url = FRIEND_URL + "appid=" + API_KEY + "&lat=" + latitude + "&lon=" + longitude;
-
-                return fetchFriendJSON(url);
+                String url = FIND_FRIENDS_URL + "email=" + user_email + "&password=" + user_password;
+                return fetchFriendsJSON(url);
 
             } catch (IOException e) {
-
                 e.printStackTrace();
                 return "Unable to retrieve web page. URL may be invalid.";
             }
@@ -81,7 +84,7 @@ public class FindFriendsActivity extends AppCompatActivity {
 
         }
 
-    }*/
+    }
 
     /**
      * GET request to the weather API, returns JSON.
@@ -90,9 +93,8 @@ public class FindFriendsActivity extends AppCompatActivity {
      * @return weather JSON
      * @throws IOException
      */
-    private String fetchFriendJSON(String aUrl) throws IOException {
+    private String fetchFriendsJSON(String aUrl) throws IOException {
         InputStream is = null;
-
         HttpURLConnection conn = null;
         URL url = new URL(aUrl);
         try {
@@ -154,8 +156,8 @@ public class FindFriendsActivity extends AppCompatActivity {
         }
 
         //get json string
-        String uvDataJson = sb.toString();
-        Log.i("uvdata", uvDataJson);
+        String friendDataJson = sb.toString();
+        Log.i("friendData", friendDataJson);
         //reset string builder
         sb.setLength(0);
 
@@ -164,7 +166,7 @@ public class FindFriendsActivity extends AppCompatActivity {
         try {
 
             //parse json text
-            JSONArray uvForecasts = new JSONArray(uvDataJson);
+            JSONArray uvForecasts = new JSONArray(friendDataJson);
 
             for (int uvForecast = 0; uvForecast < uvForecasts.length(); uvForecast++) {
                 JSONObject forecast = uvForecasts.getJSONObject(uvForecast);

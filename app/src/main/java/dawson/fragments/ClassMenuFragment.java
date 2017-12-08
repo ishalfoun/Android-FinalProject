@@ -1,4 +1,4 @@
-package dawson.dawsondangerousclub;
+package dawson.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,18 +8,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import dawson.dawsondangerousclub.ClassAdapter;
-import dawson.dawsondangerousclub.CancelledClassessActivity;
+import dawson.classes.ClassesAdapter;
+import dawson.classes.Entry;
 import dawson.dawsondangerousclub.R;
 
 public class ClassMenuFragment extends Fragment {
 
-    ClassAdapter adapter;
+    ClassesAdapter adapter;
     String [] listClassTitle;
     String [] listClassDescription;
     String [] listClassName;
@@ -42,7 +41,7 @@ public class ClassMenuFragment extends Fragment {
         }
 
         Log.d("MYTAG",  "got the entries in menufrag: "+ (entries != null ? entries.get(0).title : "empty"));
-        adapter = new ClassAdapter(getContext(), entries, listener);
+        adapter = new ClassesAdapter(getContext(), entries, listener);
     }
 
     @Override

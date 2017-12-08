@@ -3,7 +3,6 @@ package dawson.dawsondangerousclub;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -19,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import teacher.Teacher;
+import dawson.classes.Teacher;
 
 public class FindTeacherActivity extends AppCompatActivity {
     private EditText firstNameTextView;
@@ -29,9 +28,9 @@ public class FindTeacherActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_teacher);
-        firstNameTextView = this.findViewById(R.id.firstNameEditText);
-        lastNameTextView = this.findViewById(R.id.lastNameEditText);
-        exactCheckBox = this.findViewById(R.id.exactCheckBox);
+        firstNameTextView = (EditText)findViewById(R.id.firstNameEditText);
+        lastNameTextView = (EditText)findViewById(R.id.lastNameEditText);
+        exactCheckBox = (CheckBox)findViewById(R.id.exactCheckBox);
 
         if (savedInstanceState == null)
         {

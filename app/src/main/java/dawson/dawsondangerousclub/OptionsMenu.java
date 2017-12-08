@@ -13,10 +13,6 @@ public class OptionsMenu extends AppCompatActivity {
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
         // Inflate the main; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
-
-        // remove about because we don't need it here
-//        menu.removeItem(R.id.about);
-
         return true;
     }
 

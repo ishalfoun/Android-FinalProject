@@ -2,11 +2,9 @@ package dawson.dawsondangerousclub;
 
 import android.content.DialogInterface;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -16,9 +14,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import notes.Note;
-import notes.NotesDatabaseHelper;
-import utilities.ListViewNoteAdapter;
+import dawson.classes.NotesAdapter;
+import dawson.classes.Note;
+import dawson.classes.NotesDatabaseHelper;
 
 public class NotesActivity extends OptionsMenu {
     private NotesDatabaseHelper database;
@@ -30,8 +28,15 @@ public class NotesActivity extends OptionsMenu {
         setContentView(R.layout.activity_notes);
         database = new NotesDatabaseHelper(this);
         loadList();
-    }
 
+        FloatingActionButton myFab = (FloatingActionButton) findViewById(R.id.fab);
+        myFab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                createNewNote();
+            }
+        });
+
+    }
 
     private void loadList() {
         Cursor notes = database.getNotes();
@@ -41,12 +46,12 @@ public class NotesActivity extends OptionsMenu {
                 noteList.add(new Note(notes.getInt(0), notes.getString(1)));
             }
         }
-        ListViewNoteAdapter adapter = new ListViewNoteAdapter(this, noteList);
+        NotesAdapter adapter = new NotesAdapter(this, noteList);
         ListView list = (ListView) this.findViewById(R.id.notesListView);
         list.setAdapter(adapter);
     }
 
-    public void createNewNote(View view){
+    public void createNewNote(){
         final EditText editText = new EditText(this);
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.new_note_title)
