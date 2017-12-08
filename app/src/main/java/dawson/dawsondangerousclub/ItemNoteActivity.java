@@ -3,7 +3,7 @@ package dawson.dawsondangerousclub;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import notes.NotesDatabaseHelper;
+import dawson.classes.NotesDatabaseHelper;
 
 public class ItemNoteActivity extends OptionsMenu {
 

@@ -1,4 +1,4 @@
-package dawson.dawsondangerousclub;
+package dawson.classes;
 
 import android.util.Xml;
 
@@ -71,7 +71,7 @@ public class FeedParser{
                 case "course":
                     course = readCourse(parser);
                     break;
-                case "teacher":
+                case "classes":
                     teacher = readTeacher(parser);
                     break;
                 case "notes":
@@ -114,9 +114,9 @@ public class FeedParser{
 
     // Processes teacher tags in the feed.
     private String readTeacher(XmlPullParser parser) throws IOException, XmlPullParserException {
-        parser.require(XmlPullParser.START_TAG, ns, "teacher");
+        parser.require(XmlPullParser.START_TAG, ns, "classes");
         String teacher = readText(parser);
-        parser.require(XmlPullParser.END_TAG, ns, "teacher");
+        parser.require(XmlPullParser.END_TAG, ns, "classes");
         return teacher;
     }
 

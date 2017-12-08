@@ -36,10 +36,10 @@ public class SettingsActivity extends OptionsMenu {
         pw = (EditText) findViewById(R.id.pwET);
 
         prefs = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
-        firstName.setText(prefs.getString("firstname", ""));
-        lastName.setText(prefs.getString("lastname", ""));
-        email.setText(prefs.getString("email", ""));
-        pw.setText(prefs.getString("pw", ""));
+        firstName.setText(prefs.getString("firstname", "Jaya"));
+        lastName.setText(prefs.getString("lastname", "Patricia"));
+        email.setText(prefs.getString("email", "theo@gmail.com"));
+        pw.setText(prefs.getString("pw", "dawson"));
     }
 
     public void onSubmit(View v)

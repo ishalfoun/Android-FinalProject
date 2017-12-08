@@ -1,8 +1,5 @@
 package dawson.dawsondangerousclub;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +10,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-import teacher.Teacher;
+import dawson.classes.Teacher;
 
 public class ChoseTeacherActivity extends AppCompatActivity {
     private List<Teacher> teachers;

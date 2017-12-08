@@ -14,8 +14,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import notes.Note;
-import notes.NotesDatabaseHelper;
+import dawson.classes.NotesAdapter;
+import dawson.classes.Note;
+import dawson.classes.NotesDatabaseHelper;
 
 public class NotesActivity extends OptionsMenu {
     private NotesDatabaseHelper database;
@@ -45,7 +46,7 @@ public class NotesActivity extends OptionsMenu {
                 noteList.add(new Note(notes.getInt(0), notes.getString(1)));
             }
         }
-        ListViewNoteAdapter adapter = new ListViewNoteAdapter(this, noteList);
+        NotesAdapter adapter = new NotesAdapter(this, noteList);
         ListView list = (ListView) this.findViewById(R.id.notesListView);
         list.setAdapter(adapter);
     }

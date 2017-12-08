@@ -1,14 +1,14 @@
-package dawson.dawsondangerousclub;
+package dawson.fragments;
 
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import teacher.Teacher;
+import dawson.classes.Teacher;
+import dawson.dawsondangerousclub.R;
 
 public class TeacherContactFragment extends Fragment {
     @Override
@@ -16,7 +16,7 @@ public class TeacherContactFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.activity_teacher_contact, container, false);
-        Teacher teacher = getArguments().getParcelable("teacher");
+        Teacher teacher = getArguments().getParcelable("classes");
         TextView fullName = (TextView)v.findViewById(R.id.nameTextView);
         TextView email = (TextView)v.findViewById(R.id.emailTextView);
         TextView office = (TextView)v.findViewById(R.id.officeTextView);
