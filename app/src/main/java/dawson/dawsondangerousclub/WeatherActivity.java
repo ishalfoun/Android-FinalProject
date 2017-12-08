@@ -87,6 +87,7 @@ public class WeatherActivity extends OptionsMenu {
 
         //set defaults
         countrySelector.setSelection(39);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         forecastListView.setDivider(null);
 
@@ -526,8 +527,6 @@ public class WeatherActivity extends OptionsMenu {
         Log.i("uvdata", uvDataJson);
         //reset string builder
         sb.setLength(0);
-
-        sb.append("UV Forecast \n");
 
         try {
 
