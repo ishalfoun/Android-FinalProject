@@ -1,5 +1,6 @@
 package dawson.classes;
 
+import android.util.Log;
 import android.util.Xml;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -42,6 +43,7 @@ public class FeedParser{
                 skip(parser);
             }
         }
+        Log.d("MYTAG", "PARSING NOW");
         return entries;
     }
 
@@ -71,7 +73,7 @@ public class FeedParser{
                 case "course":
                     course = readCourse(parser);
                     break;
-                case "classes":
+                case "teacher":
                     teacher = readTeacher(parser);
                     break;
                 case "notes":
@@ -114,9 +116,9 @@ public class FeedParser{
 
     // Processes teacher tags in the feed.
     private String readTeacher(XmlPullParser parser) throws IOException, XmlPullParserException {
-        parser.require(XmlPullParser.START_TAG, ns, "classes");
+        parser.require(XmlPullParser.START_TAG, ns, "teacher");
         String teacher = readText(parser);
-        parser.require(XmlPullParser.END_TAG, ns, "classes");
+        parser.require(XmlPullParser.END_TAG, ns, "teacher");
         return teacher;
     }
 
