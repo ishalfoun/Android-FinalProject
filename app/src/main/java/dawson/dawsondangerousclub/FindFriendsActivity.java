@@ -1,5 +1,6 @@
 package dawson.dawsondangerousclub;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -20,14 +22,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
-public class FindFriendsActivity extends AppCompatActivity {
+public class FindFriendsActivity extends OptionsMenu {
 
     ListView friendsListView;
+    TextView friendsTitleTV;
     ArrayList<String> friends;
     SharedPreferences prefs;
     String user_email, user_password;
@@ -38,6 +38,7 @@ public class FindFriendsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_friends);
         friendsListView = (ListView)findViewById(R.id.friendsList);
+        friendsTitleTV = (TextView)findViewById(R.id.findFriendsTitle);
 
         prefs = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
         user_email = prefs.getString("email", "theo@gmail.com");
@@ -46,9 +47,21 @@ public class FindFriendsActivity extends AppCompatActivity {
         friendsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
                 // When clicked, show a toast with the TextView text
-                Toast.makeText(getApplicationContext(), "No loogawoo here. Go read your bible, you anti christ.", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "No loogawoo here. Go read your bible, you anti christ.", Toast.LENGTH_LONG).show();
+
+                String 
+
+                Intent showFriendWhereabouts = new Intent(getApplicationContext(),
+                        WhereIsFriendActivity.class);
+                showFriendWhereabouts.putExtra("quote", quotes.get(position));
+                startActivity(showFriendWhereabouts);
             }
         });
+
+
+        friends = new ArrayList<String>();
+
+        new getFriendsAsync().execute();
     }
 
     /**
@@ -75,9 +88,14 @@ public class FindFriendsActivity extends AppCompatActivity {
             if (result.equalsIgnoreCase("Invalid request.")) {
                 Toast.makeText(getApplicationContext(), "No results found.", Toast.LENGTH_LONG).show();
             } else {
-                friends = new ArrayList<String>();
-                //friends.add("Theo");
-                //friends.add("Theo");
+
+                String[] friendsArr = result.split(";");
+
+                for (String friendStr : friendsArr) {
+                    friends.add(friendStr);
+                }
+
+                //friendsTitleTV.setText(result);
                 friendsListView.setAdapter(new ArrayAdapter<String>(getApplicationContext(), R.layout.friends_list, R.id.friendTV, friends));
             }
 
@@ -87,7 +105,7 @@ public class FindFriendsActivity extends AppCompatActivity {
     }
 
     /**
-     * GET request to the weather API, returns JSON.
+     * GET request to the dawson API, returns JSON.
      *
      * @param aUrl
      * @return weather JSON
@@ -137,7 +155,6 @@ public class FindFriendsActivity extends AppCompatActivity {
             }
         }
     }
-
     /**
      * Converts the input stream returned form the website into a readable JSON string.
      *
@@ -161,37 +178,15 @@ public class FindFriendsActivity extends AppCompatActivity {
         //reset string builder
         sb.setLength(0);
 
-        sb.append("UV Forecast \n");
-
         try {
 
             //parse json text
-            JSONArray uvForecasts = new JSONArray(friendDataJson);
-
-            for (int uvForecast = 0; uvForecast < uvForecasts.length(); uvForecast++) {
-                JSONObject forecast = uvForecasts.getJSONObject(uvForecast);
-                int timestamp = forecast.getInt("date");
-                double uvIndex = forecast.getInt("value");
-                String intensity = "LOW";
-
-                Date d = new Date((long) timestamp * 1000);
-                DateFormat f = new SimpleDateFormat("EEEE MMMM dd");
-                f.format(d);
-
-                if (uvIndex > 2 && uvIndex < 6) {
-                    intensity = "MODERATE";
-                } else if (uvIndex >= 6 && uvIndex < 8) {
-                    intensity = "HIGH";
-                } else if (uvIndex >= 8 && uvIndex < 11) {
-                    intensity = "VERY HIGH";
-                }
-                if (uvIndex >= 11) {
-                    intensity = "EXTREME";
-                }
-
-
-                sb.append(f.format(d) + "---" + uvIndex + " " + intensity + " \n");
-
+            JSONArray friends = new JSONArray(friendDataJson);
+            for (int friendPosition = 0; friendPosition < friends.length(); friendPosition++) {
+                JSONObject friend = friends.getJSONObject(friendPosition);
+                String friendName = friend.getString("name");
+                String friendEmail = friend.getString("email");
+                sb.append(friendName + "-" + friendEmail + ";");
             }
 
         } catch (Exception e) {

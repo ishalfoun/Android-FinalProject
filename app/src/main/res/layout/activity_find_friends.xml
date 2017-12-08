@@ -7,10 +7,19 @@
     android:orientation="vertical"
     tools:context="dawson.dawsondangerousclub.FindFriendsActivity">
 
+    <TextView
+        android:id="@+id/findFriendsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/my_friends"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
+
     <ListView
         android:id="@+id/friendsList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1">
     </ListView>
   

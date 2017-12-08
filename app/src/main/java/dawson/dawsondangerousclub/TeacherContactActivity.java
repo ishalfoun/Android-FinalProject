@@ -4,8 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-import notes.NotesDatabaseHelper;
-import teacher.Teacher;
+import dawson.classes.Teacher;
 
 /**
  * Created by 1241616 on 11/27/2017.
