@@ -1,5 +1,6 @@
 package dawson.dawsondangerousclub;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -43,15 +44,9 @@ public class ChoseTeacherActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position,
                                 long id) {
-//            FragmentManager manager = getSupportFragmentManager();
-//            FragmentTransaction transaction = manager.beginTransaction();
-//            TeacherContactFragment teacherContact = new TeacherContactFragment();
-//            Bundle bundle = new Bundle();
-//            bundle.putParcelable("teacher",teachers.get(position));
-//            teacherContact.setArguments(bundle);
-//            transaction.add(R.id.teacherListFragment,teacherContact);
-//            transaction.addToBackStack(null);
-//            transaction.commit();
+            Intent intent = new Intent(ChoseTeacherActivity.this, TeacherContactActivity.class);
+            intent.putExtra("teacher",teachers.get(position));
+            startActivity(intent);
         }
     };
 }
