@@ -34,6 +34,8 @@
         <activity android:name=".ChoseTeacherActivity" />
         <activity android:name=".FindFriendsActivity" />
         <activity android:name=".FindFriendsInCourse" />
+        <activity android:name=".ItemNoteActivity" />
+        <activity android:name=".TeacherContactActivity"/>
     </application>
 
 </manifest>

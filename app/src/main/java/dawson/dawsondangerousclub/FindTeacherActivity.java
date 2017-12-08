@@ -77,12 +77,9 @@ public class FindTeacherActivity extends AppCompatActivity {
                         intent.putParcelableArrayListExtra("teachers",(ArrayList)teachers);
                         startActivity(intent);
                         } else {
-//                            Log.d("TEST","TEST");
-//                            Intent intent = new Intent(FindTeacherActivity.this, TeacherContactFragment.class);
-//                            Bundle bundle = new Bundle();
-//                            bundle.putParcelable("teacher", teachers.get(0));
-//                            intent.putExtras(bundle);
-//                            startActivity(intent);
+                            Intent intent = new Intent(FindTeacherActivity.this, TeacherContactActivity.class);
+                            intent.putExtra("teacher",teachers.get(0));
+                            startActivity(intent);
                         }
                     } else {
                         Toast.makeText(FindTeacherActivity.this, R.string.no_teacher_found, Toast.LENGTH_SHORT).show();
