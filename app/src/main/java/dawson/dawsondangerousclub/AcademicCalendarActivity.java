@@ -15,6 +15,10 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+/**
+ * Activity for displaying the academic calendar from the dawson website.
+ * @author
+ */
 public class AcademicCalendarActivity extends OptionsMenu  {
 
     private WebView webView;
