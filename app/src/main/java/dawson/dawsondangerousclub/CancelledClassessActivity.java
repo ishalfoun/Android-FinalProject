@@ -57,7 +57,7 @@ public class CancelledClassessActivity extends OptionsMenu implements ClassMenuF
             entries = new ArrayList<>();
             entries.add(new Entry());
         }
-        //Log.d(MYTAG,  "enter displayentries 1st entry:"+entries.get(0).title);
+        Log.d(MYTAG,  "enter displayentries 1st entry:"+entries.get(0).title);
         ClassMenuFragment menuFragment = new ClassMenuFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
@@ -111,8 +111,6 @@ public class CancelledClassessActivity extends OptionsMenu implements ClassMenuF
                     .commit();
         }
     }
-
-
 	
 	
     private class DownloadXmlTask extends AsyncTask<String, Void, String> {
@@ -154,6 +152,7 @@ public class CancelledClassessActivity extends OptionsMenu implements ClassMenuF
             }
 
             Log.d(MYTAG, "size: " + entries.size());
+            Log.d(MYTAG, "content: " + entries.get(0).teacher);
 
             return null;
         }

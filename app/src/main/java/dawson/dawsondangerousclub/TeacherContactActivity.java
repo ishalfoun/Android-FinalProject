@@ -4,12 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-import notes.NotesDatabaseHelper;
-import teacher.Teacher;
-
-/**
- * Created by 1241616 on 11/27/2017.
- */
+import dawson.classes.Teacher;
 
 public class TeacherContactActivity extends OptionsMenu{
     private final String TAG = "TeacherContactActivity";
