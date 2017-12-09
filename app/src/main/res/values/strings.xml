@@ -76,6 +76,8 @@
     <string name="uv_forecast">UV Forecast</string>
     <string name="forecast_search">Find</string>
     <string name="my_friends">My Friends</string>
+    <string name="weekend_text">It\'s the weekend!</string>
+    <string name="is_free">is Free!</string>
 
 
 </resources>

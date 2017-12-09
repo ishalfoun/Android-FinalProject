@@ -28,7 +28,8 @@ public class FindFriendsActivity extends OptionsMenu {
 
     ListView friendsListView;
     TextView friendsTitleTV;
-    ArrayList<String> friends;
+    ArrayList<String> friendNames;
+    ArrayList<String> friendEmails;
     SharedPreferences prefs;
     String user_email, user_password;
     private static final String FIND_FRIENDS_URL = "https://dawsondangerousclub2.herokuapp.com/api/api/allfriends?";
@@ -37,38 +38,42 @@ public class FindFriendsActivity extends OptionsMenu {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_friends);
-        friendsListView = (ListView)findViewById(R.id.friendsList);
-        friendsTitleTV = (TextView)findViewById(R.id.findFriendsTitle);
+        friendsListView = (ListView) findViewById(R.id.friendsList);
+        friendsTitleTV = (TextView) findViewById(R.id.findFriendsTitle);
 
+        //retrieve logged in user data
         prefs = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
         user_email = prefs.getString("email", "theo@gmail.com");
         user_password = prefs.getString("pw", "dawson");
 
+        //onItemClick find where the friend is at this time (or “Unknown Whereabouts”)  retrieve data via the API
         friendsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-                // When clicked, show a toast with the TextView text
-                //Toast.makeText(getApplicationContext(), "No loogawoo here. Go read your bible, you anti christ.", Toast.LENGTH_LONG).show();
-
-                String 
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent showFriendWhereabouts = new Intent(getApplicationContext(),
                         WhereIsFriendActivity.class);
-                showFriendWhereabouts.putExtra("quote", quotes.get(position));
+                showFriendWhereabouts.putExtra("friend_name",friendNames.get(position));
+                showFriendWhereabouts.putExtra("friend_email", friendEmails.get(position));
+                showFriendWhereabouts.putExtra("user_email",user_email);
+                showFriendWhereabouts.putExtra("user_password", user_password);
                 startActivity(showFriendWhereabouts);
             }
         });
 
 
-        friends = new ArrayList<String>();
+        //create lists to hold the friends names and emails.
+        friendNames = new ArrayList<String>();
+        friendEmails = new ArrayList<String>();
 
+        // showing all friends, data retrieved via the API
         new getFriendsAsync().execute();
     }
 
     /**
-     * This Async task gets the uv forecast via an open weather API.
+     * This Async task gets all the users friends via the API.
      * It receives JSON data which is deciphered and displayed to the user.
      */
-   private class getFriendsAsync extends AsyncTask<Void, Void, String> {
+    private class getFriendsAsync extends AsyncTask<Void, Void, String> {
 
         @Override
         protected String doInBackground(Void... voids) {
@@ -92,11 +97,13 @@ public class FindFriendsActivity extends OptionsMenu {
                 String[] friendsArr = result.split(";");
 
                 for (String friendStr : friendsArr) {
-                    friends.add(friendStr);
+                    String [] nameAndEmail = friendStr.split("#");
+                    friendNames.add(nameAndEmail[0]);
+                    friendEmails.add(nameAndEmail[1]);
                 }
 
                 //friendsTitleTV.setText(result);
-                friendsListView.setAdapter(new ArrayAdapter<String>(getApplicationContext(), R.layout.friends_list, R.id.friendTV, friends));
+                friendsListView.setAdapter(new ArrayAdapter<String>(getApplicationContext(), R.layout.friends_list, R.id.friendTV, friendNames));
             }
 
 
@@ -138,7 +145,7 @@ public class FindFriendsActivity extends OptionsMenu {
             throw e;
         } finally {
             /*
-			 * Make sure that the InputStream is closed after the app is
+             * Make sure that the InputStream is closed after the app is
 			 * finished using it.
 			 * Make sure the connection is closed after the app is finished using it.
 			 */
@@ -155,6 +162,7 @@ public class FindFriendsActivity extends OptionsMenu {
             }
         }
     }
+
     /**
      * Converts the input stream returned form the website into a readable JSON string.
      *
@@ -186,7 +194,7 @@ public class FindFriendsActivity extends OptionsMenu {
                 JSONObject friend = friends.getJSONObject(friendPosition);
                 String friendName = friend.getString("name");
                 String friendEmail = friend.getString("email");
-                sb.append(friendName + "-" + friendEmail + ";");
+                sb.append(friendName + "#" + friendEmail + ";");
             }
 
         } catch (Exception e) {
