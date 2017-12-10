@@ -572,7 +572,6 @@ public class WeatherActivity extends OptionsMenu {
         return sb.toString();
     }
 
-
     class forecastAdapter extends BaseAdapter {
         String[] text;
         int[] image;

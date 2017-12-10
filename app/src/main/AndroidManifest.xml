@@ -20,6 +20,7 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -35,7 +36,15 @@
         <activity android:name=".FindFriendsActivity" />
         <activity android:name=".FindFriendsInCourse" />
         <activity android:name=".ItemNoteActivity" />
-        <activity android:name=".TeacherContactActivity"/>
+        <activity android:name=".TeacherContactActivity" />
+        <activity android:name=".WhereIsFriendActivity" />
+        <activity android:name=".WhoIsFreeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SENDTO" />
+                <data android:scheme="mailto" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

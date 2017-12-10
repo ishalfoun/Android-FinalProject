@@ -80,8 +80,18 @@
     <string name="forecast_pic_desc">Weather Condition Image</string>
     <string name="uv_forecast">UV Forecast</string>
     <string name="forecast_search">Find</string>
+    <string name="my_friends">My Friends</string>
+    <string name="weekend_text">It\'s the weekend!</string>
+    <string name="is_free">is Free!</string>
+    <string name="loading">Loading&#8230;</string>
 
-
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="input_warning">Please enter a start and end time between 10am to 5pm.</string>
+    <string name="no_friends">No one available.</string>
 
 
 

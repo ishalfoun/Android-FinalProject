@@ -23,6 +23,7 @@ public class FindFriendsInCourse extends AppCompatActivity {
 
     ArrayList<String> friends;
     ArrayList<String> friendsOnlyNames;
+    ArrayList<String> friendsEmails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,14 +31,10 @@ public class FindFriendsInCourse extends AppCompatActivity {
         setContentView(R.layout.activity_find_friends_in_course);
 
         friends = getIntent().getStringArrayListExtra("friends");
-
-        friendsOnlyNames = new ArrayList<String>();
-        for (String friend : friends) {
-            friendsOnlyNames.add(friend.split(";")[0]);
-        }
+        friendsEmails = getIntent().getStringArrayListExtra("friendsEmails");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                R.layout.activity_find_friends_in_course, R.id.FriendTxtView, friendsOnlyNames);
+                R.layout.activity_find_friends_in_course, R.id.FriendTxtView, friends);
 
         ListView lvItems = new ListView(this);
         setContentView(lvItems);
@@ -47,8 +44,8 @@ public class FindFriendsInCourse extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/html");
-                intent.putExtra(Intent.EXTRA_EMAIL, friends.get(i).split(";")[1]);
-                intent.putExtra(Intent.EXTRA_SUBJECT, R.string.about_app_title);
+                intent.putExtra(Intent.EXTRA_EMAIL, friendsEmails.get(i));
+                intent.putExtra(Intent.EXTRA_SUBJECT, R.string.app_name);
                 intent.putExtra(Intent.EXTRA_TEXT, "Hello your class got cancelled, let's study together");
 
                 startActivity(Intent.createChooser(intent, "Send Email"));
