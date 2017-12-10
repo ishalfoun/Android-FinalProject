@@ -44,14 +44,17 @@
     <string name="no_teachers_input">Please input a first or last name.</string>
     <string name="no_mail_client">No mail clients found on this device.</string>
     <string name="send_email">Send Email</string>
-
+    <string name="no_phone">No phone application found on this device.</string>
     <string name="settings_message">You are leaving the settings. Save now?</string>
     <string name="settings_title">Warning</string>
     <string name="settings_confirm">Confirm</string>
     <string name="settings_discard">Discard</string>
     <string name="settings_pw_short">Password must be at least 6 characters long</string>
     <string name="settings_invalid_email">Invalid Email Address</string>
-
+    <string name="office">Office#</string>
+    <string name="local">Local#</string>
+    <string name="email">Email</string>
+    <string name="website">Website</string>
     <string name="cancellations">Cancellations</string>
     <string name="find_teacher">Find Teacher</string>
     <string name="add_to_calendar">Add to Calendar</string>
