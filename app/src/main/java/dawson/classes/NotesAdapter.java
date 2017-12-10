@@ -1,7 +1,6 @@
 package dawson.classes;
 
 import android.content.Context;
-import android.util.Log;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.List;
+
 import dawson.classes.Note;
 import dawson.classes.NotesDatabaseHelper;
 import dawson.dawsondangerousclub.ItemNoteActivity;
@@ -18,8 +18,7 @@ import dawson.dawsondangerousclub.NotesActivity;
 import dawson.dawsondangerousclub.R;
 
 /**
- * Adapter used for notes.
- * @author Jacob
+ * Created by 1537385 on 11/20/2017.
  */
 
 public class NotesAdapter extends BaseAdapter {
@@ -51,18 +50,24 @@ public class NotesAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View rowView = inflater.inflate(R.layout.listelement_notes,null);
-        TextView textView = rowView.findViewById(R.id.noteListTextView);
-        textView.setText(elements.get(i).getNote());
         TextView textView = (TextView)rowView.findViewById(R.id.noteListTextView);
         textView.setText(elements.get(i).getNoteShort());
         ImageButton imageBttn =  (ImageButton) rowView.findViewById(R.id.add_noteImgBttn);
         //imageBttn.setId(elements.get(i).getId());
-        final int ii = i;
+        final int ID = elements.get(i).getId();
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ItemNoteActivity.class);
+                intent.putExtra("note",ID);
+                context.startActivity(intent);
+            }
+        });
         imageBttn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NotesDatabaseHelper database = new NotesDatabaseHelper(context);
-                database.deleteNote(elements.get(ii).getId());
+                database.deleteNote(ID);
                 NotesActivity activity = (NotesActivity)context;
                 activity.onDelete();
             }

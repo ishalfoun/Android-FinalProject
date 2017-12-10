@@ -27,8 +27,8 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:text="@string/about_app"
-        android:textColor="@android:color/blue"
-        android:textSize="22sp" />
+        android:textColor="@color/blue"
+        android:textSize="15sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -78,12 +78,13 @@
             android:textSize="22sp"
             android:onClick="displayAuthorDetails"/>
 
-        <!--<ImageView-->
-            <!--android:id="@+id/imageJacob"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_weight="1"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--app:srcCompat="@drawable/jacob" />-->
+       <ImageView
+             android:id="@+id/imageJacob"
+             android:layout_width="0dp"
+             android:layout_weight="1"
+             android:layout_height="wrap_content"
+             app:srcCompat="@drawable/jacob" />
+
     </LinearLayout>
 
     <LinearLayout
