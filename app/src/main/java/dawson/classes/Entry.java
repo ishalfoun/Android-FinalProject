@@ -3,6 +3,10 @@ package dawson.classes;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/**
+ * Bean used for parsing the RSS Feed for the cancelled classes.
+ * @author Isaak
+ */
 public class Entry implements Parcelable
 {
     public final String title;

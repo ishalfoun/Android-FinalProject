@@ -2,9 +2,13 @@ package dawson.classes;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.Html;
+
+import java.net.URLDecoder;
 
 /**
- * Created by Jacob on 2017-11-28.
+ * Bean used for Find Teacher Activity
+ * @author Jacob
  */
 
 public class Teacher implements Parcelable {
@@ -90,7 +94,7 @@ public class Teacher implements Parcelable {
     public String getEmail() {
         if (email == null || email.equals("") || email.equals("null"))
             return "";
-        return email;
+        return Html.fromHtml(email).toString();
     }
 
     public void setEmail(String email) {

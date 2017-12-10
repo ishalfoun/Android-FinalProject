@@ -10,9 +10,9 @@
     <string name="theo">Theodore Acco-Thomas</string>
     <string name="course_id">420-518-DW &amp; 420-524-DW</string>
     <string name="about_me_dialog">About</string>
-    <string name="about_me_issak">Grad Dawson CS 2017 Isaak</string>
-    <string name="about_me_jacob">Grad Dawson CS 2017 Jacob</string>
-    <string name="about_me_theo">Grad Dawson CS 2017 Theo</string>
+    <string name="about_me_issak">Isaak is a Dawson Computer Science Grad of 2017. He enjoys programming algorithms.</string>
+    <string name="about_me_jacob">Jacob is a Dawson Computer Science Grad of 2017. He likes building things.</string>
+    <string name="about_me_theo">Theo is a Dawson Computer Science Grad of 2017. He likes solving puzzles.</string>
 
     <string name="page_title">Cancelled Classes</string>
     <string name="updated">Updated</string>
@@ -42,14 +42,19 @@
     <string name="teacher_no_names">Invalid Input: Insert at least one name.</string>
     <string name="no_teacher_found">No Teachers Found</string>
     <string name="no_teachers_input">Please input a first or last name.</string>
-
+    <string name="no_mail_client">No mail clients found on this device.</string>
+    <string name="send_email">Send Email</string>
+    <string name="no_phone">No phone application found on this device.</string>
     <string name="settings_message">You are leaving the settings. Save now?</string>
     <string name="settings_title">Warning</string>
     <string name="settings_confirm">Confirm</string>
     <string name="settings_discard">Discard</string>
     <string name="settings_pw_short">Password must be at least 6 characters long</string>
     <string name="settings_invalid_email">Invalid Email Address</string>
-
+    <string name="office">Office#</string>
+    <string name="local">Local#</string>
+    <string name="email">Email</string>
+    <string name="website">Website</string>
     <string name="cancellations">Cancellations</string>
     <string name="find_teacher">Find Teacher</string>
     <string name="add_to_calendar">Add to Calendar</string>
@@ -75,8 +80,18 @@
     <string name="forecast_pic_desc">Weather Condition Image</string>
     <string name="uv_forecast">UV Forecast</string>
     <string name="forecast_search">Find</string>
+    <string name="my_friends">My Friends</string>
+    <string name="weekend_text">It\'s the weekend!</string>
+    <string name="is_free">is Free!</string>
+    <string name="loading">Loading&#8230;</string>
 
-
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="input_warning">Please enter a start and end time between 10am to 5pm.</string>
+    <string name="no_friends">No one available.</string>
 
 
 

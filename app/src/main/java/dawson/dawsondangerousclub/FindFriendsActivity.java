@@ -1,5 +1,6 @@
 package dawson.dawsondangerousclub;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -20,15 +22,19 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
-public class FindFriendsActivity extends AppCompatActivity {
 
+/**
+ * Activity for displaying the friends that are found through the API
+ * @author Theo
+ */
+public class FindFriendsActivity extends OptionsMenu {
+	  private final String TAG = "FindFriendsActivity";
     ListView friendsListView;
-    ArrayList<String> friends;
+    TextView friendsTitleTV;
+    ArrayList<String> friendNames;
+    ArrayList<String> friendEmails;
     SharedPreferences prefs;
     String user_email, user_password;
     private static final String FIND_FRIENDS_URL = "https://dawsondangerousclub2.herokuapp.com/api/api/allfriends?";
@@ -37,25 +43,42 @@ public class FindFriendsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_friends);
-        friendsListView = (ListView)findViewById(R.id.friendsList);
+        friendsListView = (ListView) findViewById(R.id.friendsList);
+        friendsTitleTV = (TextView) findViewById(R.id.findFriendsTitle);
 
+        //retrieve logged in user data
         prefs = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
         user_email = prefs.getString("email", "theo@gmail.com");
         user_password = prefs.getString("pw", "dawson");
 
+        //onItemClick find where the friend is at this time (or “Unknown Whereabouts”)  retrieve data via the API
         friendsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-                // When clicked, show a toast with the TextView text
-                Toast.makeText(getApplicationContext(), "No loogawoo here. Go read your bible, you anti christ.", Toast.LENGTH_LONG).show();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent showFriendWhereabouts = new Intent(getApplicationContext(),
+                        WhereIsFriendActivity.class);
+                showFriendWhereabouts.putExtra("friend_name",friendNames.get(position));
+                showFriendWhereabouts.putExtra("friend_email", friendEmails.get(position));
+                showFriendWhereabouts.putExtra("user_email",user_email);
+                showFriendWhereabouts.putExtra("user_password", user_password);
+                startActivity(showFriendWhereabouts);
             }
         });
+
+
+        //create lists to hold the friends names and emails.
+        friendNames = new ArrayList<String>();
+        friendEmails = new ArrayList<String>();
+
+        // showing all friends, data retrieved via the API
+        new getFriendsAsync().execute();
     }
 
     /**
-     * This Async task gets the uv forecast via an open weather API.
+     * This Async task gets all the users friends via the API.
      * It receives JSON data which is deciphered and displayed to the user.
      */
-   private class getFriendsAsync extends AsyncTask<Void, Void, String> {
+    private class getFriendsAsync extends AsyncTask<Void, Void, String> {
 
         @Override
         protected String doInBackground(Void... voids) {
@@ -75,10 +98,17 @@ public class FindFriendsActivity extends AppCompatActivity {
             if (result.equalsIgnoreCase("Invalid request.")) {
                 Toast.makeText(getApplicationContext(), "No results found.", Toast.LENGTH_LONG).show();
             } else {
-                friends = new ArrayList<String>();
-                //friends.add("Theo");
-                //friends.add("Theo");
-                friendsListView.setAdapter(new ArrayAdapter<String>(getApplicationContext(), R.layout.friends_list, R.id.friendTV, friends));
+
+                String[] friendsArr = result.split(";");
+
+                for (String friendStr : friendsArr) {
+                    String [] nameAndEmail = friendStr.split("#");
+                    friendNames.add(nameAndEmail[0]);
+                    friendEmails.add(nameAndEmail[1]);
+                }
+
+                friendsTitleTV.setText(getResources().getString(R.string.my_friends));
+                friendsListView.setAdapter(new ArrayAdapter<String>(getApplicationContext(), R.layout.friends_list, R.id.friendTV, friendNames));
             }
 
 
@@ -87,7 +117,7 @@ public class FindFriendsActivity extends AppCompatActivity {
     }
 
     /**
-     * GET request to the weather API, returns JSON.
+     * GET request to the dawson API, returns JSON.
      *
      * @param aUrl
      * @return weather JSON
@@ -120,7 +150,7 @@ public class FindFriendsActivity extends AppCompatActivity {
             throw e;
         } finally {
             /*
-			 * Make sure that the InputStream is closed after the app is
+             * Make sure that the InputStream is closed after the app is
 			 * finished using it.
 			 * Make sure the connection is closed after the app is finished using it.
 			 */
@@ -161,37 +191,15 @@ public class FindFriendsActivity extends AppCompatActivity {
         //reset string builder
         sb.setLength(0);
 
-        sb.append("UV Forecast \n");
-
         try {
 
             //parse json text
-            JSONArray uvForecasts = new JSONArray(friendDataJson);
-
-            for (int uvForecast = 0; uvForecast < uvForecasts.length(); uvForecast++) {
-                JSONObject forecast = uvForecasts.getJSONObject(uvForecast);
-                int timestamp = forecast.getInt("date");
-                double uvIndex = forecast.getInt("value");
-                String intensity = "LOW";
-
-                Date d = new Date((long) timestamp * 1000);
-                DateFormat f = new SimpleDateFormat("EEEE MMMM dd");
-                f.format(d);
-
-                if (uvIndex > 2 && uvIndex < 6) {
-                    intensity = "MODERATE";
-                } else if (uvIndex >= 6 && uvIndex < 8) {
-                    intensity = "HIGH";
-                } else if (uvIndex >= 8 && uvIndex < 11) {
-                    intensity = "VERY HIGH";
-                }
-                if (uvIndex >= 11) {
-                    intensity = "EXTREME";
-                }
-
-
-                sb.append(f.format(d) + "---" + uvIndex + " " + intensity + " \n");
-
+            JSONArray friends = new JSONArray(friendDataJson);
+            for (int friendPosition = 0; friendPosition < friends.length(); friendPosition++) {
+                JSONObject friend = friends.getJSONObject(friendPosition);
+                String friendName = friend.getString("name");
+                String friendEmail = friend.getString("email");
+                sb.append(friendName + "#" + friendEmail + ";");
             }
 
         } catch (Exception e) {

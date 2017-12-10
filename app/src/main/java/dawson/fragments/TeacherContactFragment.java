@@ -10,6 +10,10 @@ import android.widget.TextView;
 import dawson.classes.Teacher;
 import dawson.dawsondangerousclub.R;
 
+/**
+ * Fragment for displaying the teacher
+ * @author Jacob
+ */
 public class TeacherContactFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

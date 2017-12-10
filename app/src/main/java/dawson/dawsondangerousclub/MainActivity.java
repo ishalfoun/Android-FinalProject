@@ -31,6 +31,11 @@ import java.net.URL;
 
 import dawson.classes.GPSTracker;
 
+
+/**
+ * Main activity for the application. Contains the menu for each other activity
+ * @author Theo, Jacob, Isaak
+ */
 public class MainActivity extends OptionsMenu {
 
     private static final int NETIOBUFFER = 1024;
@@ -139,6 +144,9 @@ public class MainActivity extends OptionsMenu {
                 break;
             case R.id.findFriendsImgBttn:
                 startActivity(new Intent(MainActivity.this, FindFriendsActivity.class));
+                break;
+            case R.id.whosFreeImgBttn:
+                startActivity(new Intent(MainActivity.this, WhoIsFreeActivity.class));
                 break;
 
         }

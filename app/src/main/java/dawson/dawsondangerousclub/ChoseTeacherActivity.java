@@ -16,8 +16,14 @@ import java.util.List;
 
 import dawson.classes.Teacher;
 
+/**
+ * Activity for displaying the teacher list
+ * @author Jacob
+ */
 public class ChoseTeacherActivity extends AppCompatActivity {
-    private List<Teacher> teachers;
+    private List<Teacher> teachers;	
+	private final String TAG = "ChoseTeacherActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

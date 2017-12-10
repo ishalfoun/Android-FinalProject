@@ -8,7 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 
 /**
- * Created by 1537385 on 11/20/2017.
+ * Databse Class for the Notes Database
+ * @author Jacob
  */
 
 public class NotesDatabaseHelper extends SQLiteOpenHelper {
@@ -38,18 +39,10 @@ public class NotesDatabaseHelper extends SQLiteOpenHelper {
         stmnt.bindString(1,id + "");
         stmnt.execute();
     }
-
     public Cursor getNotes(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("select * from " + TABLE_NAME,null);
         return cursor;
-    }
-
-    public Note getNoteById(int id){
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " WHERE ID = " + id,null);
-        cursor.moveToNext();
-        return new Note(cursor.getInt(0),cursor.getString(1));
     }
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {

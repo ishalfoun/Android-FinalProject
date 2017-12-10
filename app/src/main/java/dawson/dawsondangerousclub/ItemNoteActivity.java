@@ -5,6 +5,10 @@ import android.widget.TextView;
 
 import dawson.classes.NotesDatabaseHelper;
 
+/**
+ * Activity for displaying the note
+ * @author Jacob
+ */
 public class ItemNoteActivity extends OptionsMenu {
 
     @Override

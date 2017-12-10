@@ -9,7 +9,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+/**
+ *  Activity displayed when selecting 'About' from the options menu
+ *  Displays information about the app and the developers.
+ *  @author Isaak, Theodore 
+
+ */
 public class AboutActivity extends OptionsMenu {
+	private final String TAG = "AboutActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +24,11 @@ public class AboutActivity extends OptionsMenu {
         setContentView(R.layout.activity_about);
     }
 
+    /**
+     * Overridden to remove the menu option 'about' because we are in the about activity
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -24,6 +36,10 @@ public class AboutActivity extends OptionsMenu {
         return true;
     }
 
+    /**
+     * Responds to click event on authors. Shows a dialog with the blurb.
+     * @param v
+     */
     public void displayAuthorDetails(View v) {
 
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
@@ -44,6 +60,10 @@ public class AboutActivity extends OptionsMenu {
         alertDialog.show();
     }
 
+    /**
+     * Responds to click event on dawson image. Redirects to dawson webpage.
+     * @param v
+     */
     public void openDawsonWebPage(View v){
         Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.dawsoncollege.qc.ca/computer-science-technology/"));
         startActivity(i);

@@ -18,6 +18,12 @@ import dawson.classes.NotesAdapter;
 import dawson.classes.Note;
 import dawson.classes.NotesDatabaseHelper;
 
+
+/**
+ * Activity for adding, deleting and displaying the Notes
+ * @author Jacob
+ */
+ 
 public class NotesActivity extends OptionsMenu {
     private NotesDatabaseHelper database;
     private List<Note> noteList;
