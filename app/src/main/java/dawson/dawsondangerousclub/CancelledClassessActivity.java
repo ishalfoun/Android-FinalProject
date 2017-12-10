@@ -33,7 +33,7 @@ import dawson.fragments.ClassMenuFragment;
 public class CancelledClassessActivity extends OptionsMenu implements ClassMenuFragment.OnItemSelectedListener{
 	
 	ArrayList<Entry> entries;   
-	private final String TAG = "CancelledClassessActivity";
+	private final String MYTAG = "CancelledClassessActivity";
 
 	
     //RSS Feed URL

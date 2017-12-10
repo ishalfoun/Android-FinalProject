@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 /**
  * Activity for displaying the academic calendar from the dawson website.
- * @author Theo
  */
 public class AcademicCalendarActivity extends OptionsMenu  {
 

@@ -18,8 +18,7 @@ import dawson.dawsondangerousclub.NotesActivity;
 import dawson.dawsondangerousclub.R;
 
 /**
- * Adapter used for notes.
- * @author Jacob
+ * Created by 1537385 on 11/20/2017.
  */
 
 public class NotesAdapter extends BaseAdapter {

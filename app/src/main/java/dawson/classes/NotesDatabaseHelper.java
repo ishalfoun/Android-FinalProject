@@ -8,8 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 
 /**
- * Databse Class for the Notes Database
- * @author Jacob
+ * Created by 1537385 on 11/20/2017.
  */
 
 public class NotesDatabaseHelper extends SQLiteOpenHelper {
