@@ -1,8 +1,12 @@
-package dawson.dawsondangerousclub;
+package dawson.classes;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/**
+ * Bean used for parsing the RSS Feed for the cancelled classes.
+ * @author Isaak
+ */
 public class Entry implements Parcelable
 {
     public final String title;
@@ -13,12 +17,12 @@ public class Entry implements Parcelable
     public final String pubDate;
 
     public Entry() {
-        this.title = "test";
-        this.description =  "test";
-        this.course =  "test";
-        this.teacher =  "test";
-        this.notes =  "test";
-        this.pubDate =  "test";
+        this.title = "";
+        this.description =  "";
+        this.course =  "";
+        this.teacher =  "";
+        this.notes =  "";
+        this.pubDate =  "";
     }
 
     public Entry(String title, String description, String course,

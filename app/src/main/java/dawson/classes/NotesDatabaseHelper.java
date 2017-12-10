@@ -1,4 +1,4 @@
-package notes;
+package dawson.classes;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,7 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 
 /**
- * Created by 1537385 on 11/20/2017.
+ * Databse Class for the Notes Database
+ * @author Jacob
  */
 
 public class NotesDatabaseHelper extends SQLiteOpenHelper {

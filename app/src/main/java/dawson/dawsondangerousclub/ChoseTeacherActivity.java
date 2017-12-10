@@ -1,5 +1,6 @@
 package dawson.dawsondangerousclub;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -13,10 +14,16 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-import teacher.Teacher;
+import dawson.classes.Teacher;
 
+/**
+ * Activity for displaying the teacher list
+ * @author Jacob
+ */
 public class ChoseTeacherActivity extends AppCompatActivity {
-    private List<Teacher> teachers;
+    private List<Teacher> teachers;	
+	private final String TAG = "ChoseTeacherActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +40,7 @@ public class ChoseTeacherActivity extends AppCompatActivity {
         fullnames.add(t.getFull_name());
     }
         ArrayAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,android.R.id.text1,fullnames);
-        ListView listView = this.findViewById(R.id.teacherListView);
+        ListView listView = (ListView)findViewById(R.id.teacherListView);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(onClickTeacher);
         adapter.notifyDataSetChanged();
@@ -43,15 +50,9 @@ public class ChoseTeacherActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position,
                                 long id) {
-//            FragmentManager manager = getSupportFragmentManager();
-//            FragmentTransaction transaction = manager.beginTransaction();
-//            TeacherContactFragment teacherContact = new TeacherContactFragment();
-//            Bundle bundle = new Bundle();
-//            bundle.putParcelable("teacher",teachers.get(position));
-//            teacherContact.setArguments(bundle);
-//            transaction.add(R.id.teacherListFragment,teacherContact);
-//            transaction.addToBackStack(null);
-//            transaction.commit();
+            Intent intent = new Intent(ChoseTeacherActivity.this, TeacherContactActivity.class);
+            intent.putExtra("teacher",teachers.get(position));
+            startActivity(intent);
         }
     };
 }

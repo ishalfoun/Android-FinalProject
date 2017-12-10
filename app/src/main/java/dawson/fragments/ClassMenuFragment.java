@@ -1,4 +1,4 @@
-package dawson.dawsondangerousclub;
+package dawson.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,18 +8,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import dawson.dawsondangerousclub.ClassAdapter;
-import dawson.dawsondangerousclub.CancelledClassessActivity;
+import dawson.classes.ClassesAdapter;
+import dawson.classes.Entry;
 import dawson.dawsondangerousclub.R;
 
+/**
+ * Fragment for displaying the list of cancelled classes.
+ * @author Isaak
+ */
 public class ClassMenuFragment extends Fragment {
+	final static String TAG = "ClassMenuFragment";
 
-    ClassAdapter adapter;
+    ClassesAdapter adapter;
     String [] listClassTitle;
     String [] listClassDescription;
     String [] listClassName;
@@ -40,22 +44,9 @@ public class ClassMenuFragment extends Fragment {
                 entries = getArguments().getParcelableArrayList("entries");
             }
         }
-        //listClassTitle = entries.toArray(new String[entries.size()]);
 
-        Log.d("MYTAG",  "got the entries in menufrag: "+ (entries != null ? entries.get(0).title : "empty"));
-
-//		//TODO: need to insert array of classes here
-//		listClassTitle =  getResources().getStringArray(R.array.classList);
-//		listClassDescription =  getResources().getStringArray(R.array.classList);
-//		listClassName =  getResources().getStringArray(R.array.classList);
-//		listClassTeacher =  getResources().getStringArray(R.array.classList);
-//		listClassNotes =  getResources().getStringArray(R.array.classList);
-//		listClassPubDate =  getResources().getStringArray(R.array.classList);
-//
-//        adapter = new ClassAdapter(getContext(), listClassTitle, listClassDescription,
-//						listClassName, listClassTeacher, listClassNotes,
-//						listClassPubDate, listener);
-        adapter = new ClassAdapter(getContext(), entries, listener);
+        Log.d(TAG,  "got the entries in menufrag: "+ (entries != null ? entries.get(0).title : "empty"));
+        adapter = new ClassesAdapter(getContext(), entries, listener);
     }
 
     @Override
@@ -70,6 +61,7 @@ public class ClassMenuFragment extends Fragment {
 
         ListView lvItems = (ListView) view.findViewById(R.id.listView);
         lvItems.setAdapter(adapter);
+
     }
 
     @Override

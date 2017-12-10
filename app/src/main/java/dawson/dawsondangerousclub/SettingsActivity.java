@@ -17,6 +17,11 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
+
+/**
+ * Settings Activity launched from the options menu
+ * @author Jacob, Isaak, Theo
+ */
 public class SettingsActivity extends OptionsMenu {
 
     private EditText firstName;
@@ -36,23 +41,54 @@ public class SettingsActivity extends OptionsMenu {
         pw = (EditText) findViewById(R.id.pwET);
 
         prefs = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
-        firstName.setText(prefs.getString("firstname", ""));
-        lastName.setText(prefs.getString("lastname", ""));
-        email.setText(prefs.getString("email", ""));
-        pw.setText(prefs.getString("pw", ""));
+        firstName.setText(prefs.getString("firstname", "Jaya"));
+        lastName.setText(prefs.getString("lastname", "Patricia"));
+        email.setText(prefs.getString("email", "theo@gmail.com"));
+        pw.setText(prefs.getString("pw", "dawson"));
     }
 
     public void onSubmit(View v)
     {
-        prefs = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("firstname", firstName.getText().toString() );
-        editor.putString("lastname", lastName.getText().toString());
-        editor.putString("email", email.getText().toString());
-        editor.putString("pw", pw.getText().toString());
-        editor.putString("stamp", Calendar.getInstance().getTime().toString());
-        editor.commit();
-        this.finish();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        if (email.getText().toString().matches("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$"))//
+        {
+            if (pw.getText().toString().length()>5) {
+                prefs = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("firstname", firstName.getText().toString());
+                editor.putString("lastname", lastName.getText().toString());
+                editor.putString("email", email.getText().toString());
+                editor.putString("pw", pw.getText().toString());
+                editor.putString("stamp", Calendar.getInstance().getTime().toString());
+                editor.commit();
+                this.finish();
+            }
+            else
+            {
+                builder.setMessage(R.string.settings_pw_short)
+                        .setTitle(R.string.settings_title);
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        }
+        else
+        {
+            builder.setMessage(R.string.settings_invalid_email)
+                    .setTitle(R.string.settings_title);
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+
     }
 
     //launch a dialog to confirm or discard

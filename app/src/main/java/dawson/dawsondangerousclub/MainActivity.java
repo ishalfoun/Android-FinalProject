@@ -4,11 +4,7 @@ import android.content.Intent;
 
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.Manifest;
 import android.content.Context;
@@ -33,6 +29,13 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import dawson.classes.GPSTracker;
+
+
+/**
+ * Main activity for the application. Contains the menu for each other activity
+ * @author Theo, Jacob, Isaak
+ */
 public class MainActivity extends OptionsMenu {
 
     private static final int NETIOBUFFER = 1024;
@@ -58,8 +61,8 @@ public class MainActivity extends OptionsMenu {
         firstLaunchPrefs();
         temperatureTextView = (TextView) findViewById(R.id.tempTV);
 
-        //force location permission
-        locationPermissionRequest();
+        //force necessary permissions
+        getRequiredPermissions();
 
         // create class object
         gps = new GPSTracker(MainActivity.this);
@@ -97,8 +100,7 @@ public class MainActivity extends OptionsMenu {
 
     }
 
-    private void firstLaunchPrefs()
-    {
+    private void firstLaunchPrefs(){
         prefs = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
         if ( prefs.getString("email", "undefined").equals("undefined"))
         {
@@ -140,6 +142,12 @@ public class MainActivity extends OptionsMenu {
             case R.id.teamImgBttn:
                 startActivity(new Intent(MainActivity.this, AboutActivity.class));
                 break;
+            case R.id.findFriendsImgBttn:
+                startActivity(new Intent(MainActivity.this, FindFriendsActivity.class));
+                break;
+            case R.id.whosFreeImgBttn:
+                startActivity(new Intent(MainActivity.this, WhoIsFreeActivity.class));
+                break;
 
         }
 
@@ -149,13 +157,11 @@ public class MainActivity extends OptionsMenu {
     /**
      * If location permission is not already granted, this method demands for it.
      */
-    private void locationPermissionRequest() {
+    private void getRequiredPermissions() {
 
         while (!hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_REQUEST);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.WRITE_CALENDAR, Manifest.permission.READ_CALENDAR}, LOCATION_REQUEST);
         }
-
-
     }
 
     /**

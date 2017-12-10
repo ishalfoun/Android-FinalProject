@@ -44,7 +44,13 @@ import java.util.Date;
 import java.util.List;
 
 
+/**
+ * Activity for displaying the weather
+ * @author Theo
+ */
+
 public class WeatherActivity extends OptionsMenu {
+	private final String TAG = "WeatherActivity";
 
     EditText cityInput;
     Spinner countrySelector;
@@ -87,6 +93,7 @@ public class WeatherActivity extends OptionsMenu {
 
         //set defaults
         countrySelector.setSelection(39);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         forecastListView.setDivider(null);
 
@@ -527,8 +534,6 @@ public class WeatherActivity extends OptionsMenu {
         //reset string builder
         sb.setLength(0);
 
-        sb.append("UV Forecast \n");
-
         try {
 
             //parse json text
@@ -566,7 +571,6 @@ public class WeatherActivity extends OptionsMenu {
         }
         return sb.toString();
     }
-
 
     class forecastAdapter extends BaseAdapter {
         String[] text;

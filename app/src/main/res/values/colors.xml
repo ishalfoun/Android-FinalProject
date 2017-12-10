@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#17436b</color>
+    <color name="colorPrimaryDark">#4d83b5</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="black">#000</color>
+
+    <color name="dawson_colour_1">#bd5276</color>
+    <color name="dawson_colour_2">#548ec4</color>
+    <color name="dawson_colour_3">#f59331</color>
+    <color name="dawson_colour_4">#9758cb</color>
+    <color name="dawson_colour_5">#41a849</color>
+
+
 
 </resources>

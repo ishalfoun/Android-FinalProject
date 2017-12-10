@@ -1,43 +1,32 @@
-package dawson.dawsondangerousclub;
+package dawson.classes;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import dawson.dawsondangerousclub.ClassMenuFragment;
+import dawson.fragments.ClassMenuFragment;
+import dawson.dawsondangerousclub.R;
 
-public class ClassAdapter extends BaseAdapter {
-	
-	private Context context;
+/**
+ * Adapter for the Classes. (used by Cancelled Classes Activity)
+ * @author Isaak
+ */
+public class ClassesAdapter extends BaseAdapter {
+
+    private Context context;
     ArrayList<Entry> classList;
     LayoutInflater inflater;
     private ClassMenuFragment.OnItemSelectedListener listener;
 
-//    public ClassAdapter(Context c, String [] listClassTitle,String [] listClassDescription,
-//                        String [] listClassName, String [] listClassTeacher, String [] listClassNotes,
-//                        String[] listClassPubDate, ClassMenuFragment.OnItemSelectedListener listener){
-//        context = c;
-//        this.listClassTitle = listClassTitle;
-//        this.listClassDescription = listClassDescription;
-//        this.listClassName = listClassName;
-//        this.listClassTeacher = listClassTeacher;
-//        this.listClassNotes = listClassNotes;
-//        this.listClassPubDate = listClassPubDate;
-//        this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        this.listener = listener;
-//    }
-    public ClassAdapter(Context c, ArrayList<Entry> classList, ClassMenuFragment.OnItemSelectedListener listener){
+    public ClassesAdapter(Context c, ArrayList<Entry> classList, ClassMenuFragment.OnItemSelectedListener listener) {
         context = c;
-        this.classList=classList;
-        this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.classList = classList;
+        this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.listener = listener;
     }
 
@@ -50,15 +39,10 @@ public class ClassAdapter extends BaseAdapter {
     public Object getItem(int i) {
         return classList.get(i);
     }
-    //
 
     @Override
     public long getItemId(int i) {
         return i;
-    }
-
-    public class ViewHolder {
-        TextView tv; 
     }
 
     @Override
@@ -86,6 +70,10 @@ public class ClassAdapter extends BaseAdapter {
         });
 
         return row;
+    }
+
+    public class ViewHolder {
+        TextView tv;
     }
 
 

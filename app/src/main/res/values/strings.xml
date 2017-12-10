@@ -27,6 +27,7 @@
 
 
     <string name="preference_file_key">dawson.dawsondangerousclub</string>
+    <string name="notes_title">My Notes</string>
     <string name="add_note">New Note</string>
     <string name="cancel">Cancel</string>
     <string name="new_note_title">New Note</string>
@@ -41,10 +42,57 @@
     <string name="teacher_no_names">Invalid Input: Insert at least one name.</string>
     <string name="no_teacher_found">No Teachers Found</string>
     <string name="no_teachers_input">Please input a first or last name.</string>
-
+    <string name="no_mail_client">No mail clients found on this device.</string>
+    <string name="send_email">Send Email</string>
+    <string name="no_phone">No phone application found on this device.</string>
     <string name="settings_message">You are leaving the settings. Save now?</string>
     <string name="settings_title">Warning</string>
     <string name="settings_confirm">Confirm</string>
     <string name="settings_discard">Discard</string>
+    <string name="settings_pw_short">Password must be at least 6 characters long</string>
+    <string name="settings_invalid_email">Invalid Email Address</string>
+    <string name="office">Office#</string>
+    <string name="local">Local#</string>
+    <string name="email">Email</string>
+    <string name="website">Website</string>
+    <string name="cancellations">Cancellations</string>
+    <string name="find_teacher">Find Teacher</string>
+    <string name="add_to_calendar">Add to Calendar</string>
+    <string name="notes">Notes</string>
+    <string name="weather">Weather</string>
+    <string name="academic_calendar">Academic Calendar</string>
+    <string name="find_friends">Find Friends</string>
+    <string name="who_is_free">Who\'s Free</string>
+
+    <string name="dawson_logo">Dawson Logo</string>
+    <string name="team_logo">Team Logo</string>
+
+    <string name="add_event">Add Event To Calendar</string>
+    <string name="event_title">Enter Title:</string>
+    <string name="event_desc">Enter Description:</string>
+    <string name="set_start_time">Set Start Time</string>
+    <string name="set_start_date">Set Start Date</string>
+    <string name="set_end_time">Set End Time</string>
+    <string name="set_end_date">Set End Date</string>
+    <string name="add_event_btn">Add to Calendar</string>
+    <string name="title_activity_test">testActivity</string>
+
+    <string name="forecast_pic_desc">Weather Condition Image</string>
+    <string name="uv_forecast">UV Forecast</string>
+    <string name="forecast_search">Find</string>
+    <string name="my_friends">My Friends</string>
+    <string name="weekend_text">It\'s the weekend!</string>
+    <string name="is_free">is Free!</string>
+    <string name="loading">Loading&#8230;</string>
+
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="input_warning">Please enter a start and end time between 10am to 5pm.</string>
+    <string name="no_friends">No one available.</string>
+
+
 
 </resources>

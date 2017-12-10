@@ -1,52 +1,40 @@
 package dawson.dawsondangerousclub;
 
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Xml;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.WebView;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import dawson.dawsondangerousclub.ClassDetailFragment;
-import dawson.dawsondangerousclub.ClassMenuFragment;
 
+import dawson.classes.Entry;
+import dawson.classes.FeedParser;
+import dawson.fragments.ClassDetailFragment;
+import dawson.fragments.ClassMenuFragment;
+
+/**
+ * Activity for displaying the cancelled classes from the RSS feed. 
+ * It downloads the RSS feed asynchronously using the private class 
+ * It uses FeedParser to parse the file, then displays the info in fragments.
+ * @author Isaak
+ */
 public class CancelledClassessActivity extends OptionsMenu implements ClassMenuFragment.OnItemSelectedListener{
 	
-	ArrayList<Entry> entries;
-    final static String MYTAG = "MYTAG";
+	ArrayList<Entry> entries;   
+	private final String MYTAG = "CancelledClassessActivity";
+
 	
     //RSS Feed URL
     private final String RSS_FEED_URL = "https://www.dawsoncollege.qc.ca/wp-content/external-includes/cancellations/feed.xml";
@@ -67,8 +55,10 @@ public class CancelledClassessActivity extends OptionsMenu implements ClassMenuF
         } else {
             errorTv.setText("No network connection available.");
         }
+        displayEntries(savedInstanceState);
     }
-    private void displayEntries()
+
+    private void displayEntries(Bundle savedInstanceState)
     {
         if (entries == null) {
             entries = new ArrayList<>();
@@ -82,13 +72,13 @@ public class CancelledClassessActivity extends OptionsMenu implements ClassMenuF
         args.putParcelableArrayList("entries", entries);
         menuFragment.setArguments(args);
 
-        //if (savedInstanceState == null) {
+        if (savedInstanceState == null) {
             ft.add(R.id.flContainer, menuFragment);
             ft.commit();
-//        } else {
-//            ft.replace(R.id.flContainer, menuFragment);
-//            ft.commit();
-//        }
+        } else {
+            ft.replace(R.id.flContainer, menuFragment);
+            ft.commit();
+        }
 
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
             ClassDetailFragment secondFragment = new ClassDetailFragment();
@@ -128,8 +118,6 @@ public class CancelledClassessActivity extends OptionsMenu implements ClassMenuF
                     .commit();
         }
     }
-
-
 	
 	
     private class DownloadXmlTask extends AsyncTask<String, Void, String> {
@@ -148,7 +136,7 @@ public class CancelledClassessActivity extends OptionsMenu implements ClassMenuF
 
         @Override
         protected void onPostExecute(String result) {
-            displayEntries();
+            displayEntries(null);
         }
 
         // Uploads XML from stackoverflow.com, parses it, and combines it with
@@ -171,6 +159,7 @@ public class CancelledClassessActivity extends OptionsMenu implements ClassMenuF
             }
 
             Log.d(MYTAG, "size: " + entries.size());
+            Log.d(MYTAG, "content: " + entries.get(0).teacher);
 
             return null;
         }
