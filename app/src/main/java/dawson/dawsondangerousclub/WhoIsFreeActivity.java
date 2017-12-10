@@ -58,8 +58,8 @@ public class WhoIsFreeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_who_is_free);
 
-        daySelector = (Spinner)findViewById(R.id.daySpinner);
-        friendLV =(ListView)findViewById(R.id.friendLV);
+        daySelector = (Spinner) findViewById(R.id.daySpinner);
+        friendLV = (ListView) findViewById(R.id.friendLV);
         tvStartTime = (TextView) findViewById(R.id.startTimeTV);
         tvEndTime = (TextView) findViewById(R.id.endTimeTV);
 
@@ -95,7 +95,7 @@ public class WhoIsFreeActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(Intent.ACTION_SENDTO);
                 intent.setData(Uri.parse("mailto:")); // only email apps should handle this
-                intent.putExtra(Intent.EXTRA_EMAIL, new String[] { friendEmails.get(position) });
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{friendEmails.get(position)});
                 intent.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.app_name));
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivity(intent);
@@ -135,9 +135,10 @@ public class WhoIsFreeActivity extends AppCompatActivity {
 
     /**
      * Get friends on break during specified time, lanches Async Task
+     *
      * @param view
      */
-    public void getBreakFriends(View view){
+    public void getBreakFriends(View view) {
         new getBreakFriends().execute();
     }
 
@@ -151,8 +152,8 @@ public class WhoIsFreeActivity extends AppCompatActivity {
         protected String doInBackground(Void... voids) {
             try {
                 //String url = "https://dawsondangerousclub2.herokuapp.com/api/api/breakfriends?email=theo@gmail.com&password=dawson&day=1&start=1000&end=1300";
-                String url = BREAK_FRIENDS_URL + "email=" + user_email + "&password=" + user_password + "&day=" + (daySelector.getSelectedItemPosition()+1) + "&start=" + apiTimeFormat.format(startTime.getTime()) + "&end="+apiTimeFormat.format(endTime.getTime());
-                Log.d(TAG, "Url: "+ url);
+                String url = BREAK_FRIENDS_URL + "email=" + user_email + "&password=" + user_password + "&day=" + (daySelector.getSelectedItemPosition() + 1) + "&start=" + apiTimeFormat.format(startTime.getTime()) + "&end=" + apiTimeFormat.format(endTime.getTime());
+                Log.d(TAG, "Url: " + url);
                 return fetchBreakFriendsJSON(url);
 
             } catch (IOException e) {
@@ -164,14 +165,26 @@ public class WhoIsFreeActivity extends AppCompatActivity {
 
         protected void onPostExecute(String result) {
 
+
+            //empty any previous searched friends
+            friendNames.clear();
+            friendEmails.clear();
+
+            Log.i(TAG, "Result: " + result);
+
+
             if (result.equalsIgnoreCase("Invalid request.") || result.equalsIgnoreCase("Unable to retrieve web page. URL may be invalid.")) {
                 Toast.makeText(getApplicationContext(), getResources().getString(R.string.input_warning), Toast.LENGTH_LONG).show();
+            } else if (result.equalsIgnoreCase("empty")) {
+
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.no_friends), Toast.LENGTH_LONG).show();
+
             } else {
 
                 String[] friendsArr = result.split(";");
 
-                for (int x =0; x<=(friendsArr.length-1); x++) {
-                    String [] nameAndEmail = friendsArr[x].split("#");
+                for (int x = 0; x <= (friendsArr.length - 1); x++) {
+                    String[] nameAndEmail = friendsArr[x].split("#");
                     friendNames.add(nameAndEmail[0]);
                     friendEmails.add(nameAndEmail[1]);
                 }
@@ -261,13 +274,18 @@ public class WhoIsFreeActivity extends AppCompatActivity {
 
         try {
 
-            //parse json text
             JSONArray friends = new JSONArray(friendDataJson);
-            for (int friendPosition = 0; friendPosition < friends.length(); friendPosition++) {
-                JSONObject friend = friends.getJSONObject(friendPosition);
-                String friendName = friend.getString("name");
-                String friendEmail = friend.getString("email");
-                sb.append(friendName + "#" + friendEmail + ";");
+
+            if (friends.length() == 0) {
+                sb.append("empty");
+            } else {
+                //parse json text
+                for (int friendPosition = 0; friendPosition < friends.length(); friendPosition++) {
+                    JSONObject friend = friends.getJSONObject(friendPosition);
+                    String friendName = friend.getString("name");
+                    String friendEmail = friend.getString("email");
+                    sb.append(friendName + "#" + friendEmail + ";");
+                }
             }
 
         } catch (Exception e) {
@@ -276,7 +294,6 @@ public class WhoIsFreeActivity extends AppCompatActivity {
         }
         return sb.toString();
     }
-
 
 
 }
