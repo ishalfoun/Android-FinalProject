@@ -3,11 +3,11 @@
     <string name="about_menu_item">About</string>
     <string name="dawson_menu_item">Dawson </string>
     <string name="settings_menu_item">Settings</string>
-    <string name="about_app">This line is supposed to talk about what our app does (TBD). \n \n By </string>
+    <string name="about_app">This application is our combined final project for the third year courses "Mobile Software" and "Internet App III" at Dawson College. \nThis app can show you teachers and friends and other dawson info such as cancelled classes and the academic calendar, and has more general use functionality such as weather, notes and calendar events. The web-project that this app connects to can be found at http://dawsondangerousclub2.herokuapp.com\n \n By </string>
     <string name="about_app_title">Dawson</string>
-    <string name="issak">Issak Shalfoun</string>
+    <string name="issak">Isaak Shalfoun</string>
     <string name="jacob">Jacob Riendeau</string>
-    <string name="theo">Theodore Acco - Thomas</string>
+    <string name="theo">Theodore Acco-Thomas</string>
     <string name="course_id">420-518-DW &amp; 420-524-DW</string>
     <string name="about_me_dialog">About</string>
     <string name="about_me_issak">Isaak is a Dawson Computer Science Grad of 2017. He enjoys programming algorithms.</string>
