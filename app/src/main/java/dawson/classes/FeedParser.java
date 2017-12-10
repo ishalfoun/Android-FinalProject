@@ -1,5 +1,6 @@
-package dawson.dawsondangerousclub;
+package dawson.classes;
 
+import android.util.Log;
 import android.util.Xml;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -10,7 +11,14 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Used parsing the RSS Feed for the cancelled classes.
+ * @author Isaak
+ */
 public class FeedParser{
+	
+        private final String TAG = "FeedParser";
     // don't use namespaces
     private static final String ns = null;
 
@@ -42,6 +50,7 @@ public class FeedParser{
                 skip(parser);
             }
         }
+        Log.d(TAG, "PARSING NOW");
         return entries;
     }
 

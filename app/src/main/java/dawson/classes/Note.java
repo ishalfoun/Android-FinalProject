@@ -1,4 +1,4 @@
-package notes;
+package dawson.classes;
 
 /**
  * Created by 1537385 on 11/20/2017.
@@ -26,5 +26,12 @@ public class Note {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public String getNoteShort(){
+        if (note.length() > 25){
+            return note.substring(0,24);
+        }
+        return note;
     }
 }

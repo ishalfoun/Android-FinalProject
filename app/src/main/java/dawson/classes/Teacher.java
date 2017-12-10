@@ -1,10 +1,14 @@
-package teacher;
+package dawson.classes;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.Html;
+
+import java.net.URLDecoder;
 
 /**
- * Created by Jacob on 2017-11-28.
+ * Bean used for Find Teacher Activity
+ * @author Jacob
  */
 
 public class Teacher implements Parcelable {
@@ -58,6 +62,8 @@ public class Teacher implements Parcelable {
     };
 
     public String getFirst_name() {
+        if (first_name == null || first_name.equals("") || first_name.equals("null"))
+            return "";
         return first_name;
     }
 
@@ -66,6 +72,8 @@ public class Teacher implements Parcelable {
     }
 
     public String getLast_name() {
+        if (last_name == null || last_name.equals("") || last_name.equals("null"))
+            return "";
         return last_name;
     }
 
@@ -74,6 +82,8 @@ public class Teacher implements Parcelable {
     }
 
     public String getFull_name() {
+        if (full_name == null || full_name.equals("") || full_name.equals("null"))
+            return "";
         return full_name;
     }
 
@@ -82,7 +92,9 @@ public class Teacher implements Parcelable {
     }
 
     public String getEmail() {
-        return email;
+        if (email == null || email.equals("") || email.equals("null"))
+            return "";
+        return Html.fromHtml(email).toString();
     }
 
     public void setEmail(String email) {
@@ -90,6 +102,8 @@ public class Teacher implements Parcelable {
     }
 
     public String getOffice() {
+        if (office == null||office.equals("") || office.equals("null"))
+            return "";
         return office;
     }
 
@@ -98,6 +112,8 @@ public class Teacher implements Parcelable {
     }
 
     public String getLocal() {
+        if (local == null||local.equals("") || local.equals("null"))
+            return "";
         return local;
     }
 
@@ -106,6 +122,8 @@ public class Teacher implements Parcelable {
     }
 
     public String getWebsite() {
+        if (website == null || website.equals("") || website.equals("null"))
+            return "";
         return website;
     }
 
@@ -114,6 +132,8 @@ public class Teacher implements Parcelable {
     }
 
     public String getBio() {
+        if (bio == null || bio.equals("") || bio.equals("null"))
+            return "";
         return bio;
     }
 
@@ -122,6 +142,8 @@ public class Teacher implements Parcelable {
     }
 
     public String getImage() {
+        if (image == null || image.equals("") || image.equals("null"))
+            return "";
         return image;
     }
 
@@ -145,5 +167,10 @@ public class Teacher implements Parcelable {
         parcel.writeString(this.website);
         parcel.writeString(this.bio);
         parcel.writeString(this.image);
+    }
+
+    public String teacherInfo(){
+        return first_name + "\n" + last_name + "\n" + full_name + "\n" + email + "\n" + office + "\n" + " " + local + "\n" + website + "\n" + bio + "\n" + image;
+
     }
 }

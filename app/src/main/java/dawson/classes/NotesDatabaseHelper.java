@@ -1,4 +1,4 @@
-package notes;
+package dawson.classes;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -38,10 +38,18 @@ public class NotesDatabaseHelper extends SQLiteOpenHelper {
         stmnt.bindString(1,id + "");
         stmnt.execute();
     }
+
     public Cursor getNotes(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("select * from " + TABLE_NAME,null);
         return cursor;
+    }
+
+    public Note getNoteById(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " WHERE ID = " + id,null);
+        cursor.moveToNext();
+        return new Note(cursor.getInt(0),cursor.getString(1));
     }
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {

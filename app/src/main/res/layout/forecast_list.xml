@@ -2,26 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/weather_activity_vertical_margin"
-    android:paddingLeft="@dimen/weather_activity_horizontal_margin"
-    android:paddingRight="@dimen/weather_activity_horizontal_margin"
-    android:paddingTop="@dimen/weather_activity_vertical_margin"
     android:weightSum="2"
     android:orientation="horizontal">
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/forecastText"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_weight="1"
-        android:padding="10dp"
+        android:padding="12dp"
         android:textColor="@android:color/black"
+        android:gravity="center"
         android:textSize="16sp" />
 
     <ImageView
         android:id="@+id/forecastImage"
+        android:contentDescription="@string/forecast_pic_desc"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
+        android:adjustViewBounds="true"
         android:layout_weight="1"
         />
 </LinearLayout>
