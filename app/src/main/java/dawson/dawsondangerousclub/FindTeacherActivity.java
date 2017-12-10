@@ -53,23 +53,40 @@ public class FindTeacherActivity extends AppCompatActivity {
         boolean exact = exactCheckBox.isChecked();
         Query foundTeachers;
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-
-        //IF NO INPUTS
+        //IF NO INPUTS WILL NOTIFY THE USER
         if ((firstName.equals("") || firstName.equals(getString(R.string.firstname))) && (lastName.equals("") || lastName.equals(getString(R.string.lastname)))) {
             Toast.makeText(FindTeacherActivity.this, R.string.no_teachers_input, Toast.LENGTH_SHORT).show();
         } else {
-            //SEARCH BY FIRST NAME
-            if ((lastName.equals("") || lastName.equals(getString(R.string.lastname)))) {
-                foundTeachers = rootRef.orderByChild("first_name").equalTo(firstName);
+            //IF EXACT SEARCH IS ON SEARCH BY EXACT FIRST AND OR LAST NAME
+            if (exact) {
+                //SEARCH BY FIRST NAME
+                if ((lastName.equals("") || lastName.equals(getString(R.string.lastname)))) {
+                    foundTeachers = rootRef.orderByChild("first_name").equalTo(firstName);
+                }
+                ////SEARCH BY LAST NAME
+                else if (firstName.equals("") || firstName.equals(getString(R.string.lastname))) {
+                    foundTeachers = rootRef.orderByChild("last_name").equalTo(lastName);
+                }
+                //SEARCH BY FULL NAME
+                else {
+                    foundTeachers = rootRef.orderByChild("full_name").equalTo(firstName + " " + lastName);
+                }
             }
-            ////SEARCH BY LAST NAME
-            else if(firstName.equals("") || firstName.equals(getString(R.string.lastname))){
-                foundTeachers = rootRef.orderByChild("last_name").equalTo(lastName);
-            }
-            //SEARCH BY FULL NAME
+            //OTHERWISE USE LIKE SEARCH TO FIND THE START OF THE NAME
             else {
-                foundTeachers = rootRef.orderByChild("full_name").equalTo(firstName + " " + lastName);
+                if ((lastName.equals("") || lastName.equals(getString(R.string.lastname)))) {
+                    foundTeachers = rootRef.orderByChild("first_name").startAt(firstName).endAt(firstName + "\uf8ff");
+                }
+                ////SEARCH BY LAST NAME
+                else if (firstName.equals("") || firstName.equals(getString(R.string.lastname))) {
+                    foundTeachers = rootRef.orderByChild("last_name").startAt(lastName).endAt(lastName + "\uf8ff");
+                }
+                //SEARCH BY FULL NAME
+                else {
+                    foundTeachers = rootRef.orderByChild("full_name").startAt(firstName + " " + lastName).endAt(firstName + " " + lastName + "\uf8ff");
+                }
             }
+            //SEARCH FOR THE TEACHERS
             foundTeachers.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -78,15 +95,18 @@ public class FindTeacherActivity extends AppCompatActivity {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             teachers.add(snapshot.getValue(Teacher.class));
                         }
+                        //IF MORE THAN ONE TEACHER IS FOUND CREATE AN ARRAY LIST AND LAUNCH THE CHOSE TEACHER ACTIVITY
                         if (teachers.size() > 1) {
                         Intent intent = new Intent(FindTeacherActivity.this, ChoseTeacherActivity.class);
                         intent.putParcelableArrayListExtra("teachers",(ArrayList)teachers);
                         startActivity(intent);
                         } else {
+                            //IF NOT START THE TEACHER CONTACT ACITIVTY SINCE ONLY ONE TEACHER WAS FOUND
                             Intent intent = new Intent(FindTeacherActivity.this, TeacherContactActivity.class);
                             intent.putExtra("teacher",teachers.get(0));
                             startActivity(intent);
                         }
+                        //IF NO TEACHERS WERE FOUND THIS WILL MAKE A TOAST AND NOTIFY THE USER
                     } else {
                         Toast.makeText(FindTeacherActivity.this, R.string.no_teacher_found, Toast.LENGTH_SHORT).show();
                     }
