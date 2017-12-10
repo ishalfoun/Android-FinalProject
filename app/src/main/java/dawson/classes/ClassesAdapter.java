@@ -12,6 +12,10 @@ import java.util.ArrayList;
 import dawson.fragments.ClassMenuFragment;
 import dawson.dawsondangerousclub.R;
 
+/**
+ * Adapter for the Classes. (used by Cancelled Classes Activity)
+ * @author Isaak
+ */
 public class ClassesAdapter extends BaseAdapter {
 
     private Context context;

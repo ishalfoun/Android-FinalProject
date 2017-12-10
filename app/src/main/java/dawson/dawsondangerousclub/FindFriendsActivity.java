@@ -25,7 +25,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Activity for displaying the friends that are found through the API
+ * @author Theo
+ */
 public class FindFriendsActivity extends AppCompatActivity {
+	private final String TAG = "FindFriendsActivity";
 
     ListView friendsListView;
     ArrayList<String> friends;

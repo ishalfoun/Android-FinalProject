@@ -6,6 +6,10 @@ import android.widget.TextView;
 
 import dawson.classes.Teacher;
 
+/**
+ * Activity for displaying the teacher
+ * @author Jacob
+ */
 public class TeacherContactActivity extends OptionsMenu{
     private final String TAG = "TeacherContactActivity";
     private Teacher teacher;

@@ -20,10 +20,16 @@ import java.util.List;
 
 import dawson.classes.Teacher;
 
+/**
+ * Activity for displaying the teachers that were found through the API 
+ * @author Theo
+ */
 public class FindTeacherActivity extends AppCompatActivity {
     private EditText firstNameTextView;
     private EditText lastNameTextView;
-    private CheckBox exactCheckBox;
+    private CheckBox exactCheckBox;	
+	private final String TAG = "FindTeacherActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

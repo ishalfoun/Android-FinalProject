@@ -29,7 +29,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+/**
+ * Activity for adding an event to the local calendar.
+ * @author Isaak
+ */
 public class CalendarActivity extends OptionsMenu {
+    private final String TAG = "CalendarActivity";
 
     private EditText title;
     private EditText description;

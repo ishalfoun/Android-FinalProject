@@ -14,7 +14,12 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Activity for displaying the friends in a certain course, retrieved through the API
+ * @author Theo
+ */
 public class FindFriendsInCourse extends AppCompatActivity {
+	private final String TAG = "FindFriendsInCourse";
 
     ArrayList<String> friends;
     ArrayList<String> friendsOnlyNames;

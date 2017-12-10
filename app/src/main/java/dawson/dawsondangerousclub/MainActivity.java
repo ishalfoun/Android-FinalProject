@@ -31,6 +31,11 @@ import java.net.URL;
 
 import dawson.classes.GPSTracker;
 
+
+/**
+ * Main activity for the application. Contains the menu for each other activity
+ * @author Theo, Jacob, Isaak
+ */
 public class MainActivity extends OptionsMenu {
 
     private static final int NETIOBUFFER = 1024;

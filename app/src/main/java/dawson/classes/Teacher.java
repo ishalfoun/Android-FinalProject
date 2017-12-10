@@ -4,7 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by Jacob on 2017-11-28.
+ * Bean used for Find Teacher Activity
+ * @author Jacob
  */
 
 public class Teacher implements Parcelable {
