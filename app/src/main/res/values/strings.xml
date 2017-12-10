@@ -85,6 +85,7 @@
     <string name="wednesday">Wednesday</string>
     <string name="thursday">Thursday</string>
     <string name="friday">Friday</string>
+    <string name="input_warning">Please enter a start and end time between 10am to 5pm.</string>
 
 
 
