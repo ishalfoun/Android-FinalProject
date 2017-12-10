@@ -34,9 +34,13 @@ import dawson.dawsondangerousclub.FindTeacherActivity;
 import dawson.dawsondangerousclub.R;
 
 
+/**
+ * Fragment for displaying the details about each class.
+ * @author Isaak
+ */
 public class ClassDetailFragment extends Fragment {
     int position = 0;
-	final static String MYTAG = "MYTAG";
+	final static String MYTAG = "ClassDetailFragment";
     TextView tvClassTitle;
     TextView tvClassDescription;
     TextView tvClassName;
@@ -121,12 +125,23 @@ public class ClassDetailFragment extends Fragment {
     // Activity is calling this to update view on Fragment
     public void updateView(){
         if (entries != null) {
-            tvClassTitle.setText(getResources().getString(R.string.classTitle) + " " + entries.get(position).title);
+            if (entries.get(0).title != "") {
+                tvClassTitle.setText(getResources().getString(R.string.classTitle) + " " + entries.get(position).title);
 //        tvClassDescription.setText(getResources().getString(R.string.classDescription)+" "+entries.get(position).description);
-            tvClassName.setText(getResources().getString(R.string.className) + " " + entries.get(position).course);
-            tvClassTeacher.setText(getResources().getString(R.string.classTeacher) + " " + entries.get(position).teacher);
-            tvClassNotes.setText(getResources().getString(R.string.classNotes) + " " + entries.get(position).notes);
-            tvClassPubDate.setText(getResources().getString(R.string.classPubDate) + " " + entries.get(position).pubDate);
+                tvClassName.setText(getResources().getString(R.string.className) + " " + entries.get(position).course);
+                tvClassTeacher.setText(getResources().getString(R.string.classTeacher) + " " + entries.get(position).teacher);
+                tvClassNotes.setText(getResources().getString(R.string.classNotes) + " " + entries.get(position).notes);
+                tvClassPubDate.setText(getResources().getString(R.string.classPubDate) + " " + entries.get(position).pubDate);
+            }
+        }
+        else
+        {
+            tvClassTitle.setText("");
+//        tvClassDescription.setText("");
+            tvClassName.setText("");
+            tvClassTeacher.setText("");
+            tvClassNotes.setText("");
+            tvClassPubDate.setText("");
         }
     }
 

@@ -24,10 +24,17 @@ import dawson.classes.FeedParser;
 import dawson.fragments.ClassDetailFragment;
 import dawson.fragments.ClassMenuFragment;
 
+/**
+ * Activity for displaying the cancelled classes from the RSS feed. 
+ * It downloads the RSS feed asynchronously using the private class 
+ * It uses FeedParser to parse the file, then displays the info in fragments.
+ * @author Isaak
+ */
 public class CancelledClassessActivity extends OptionsMenu implements ClassMenuFragment.OnItemSelectedListener{
 	
-	ArrayList<Entry> entries;
-    final static String MYTAG = "MYTAG";
+	ArrayList<Entry> entries;   
+	private final String TAG = "CancelledClassessActivity";
+
 	
     //RSS Feed URL
     private final String RSS_FEED_URL = "https://www.dawsoncollege.qc.ca/wp-content/external-includes/cancellations/feed.xml";
@@ -57,7 +64,7 @@ public class CancelledClassessActivity extends OptionsMenu implements ClassMenuF
             entries = new ArrayList<>();
             entries.add(new Entry());
         }
-        //Log.d(MYTAG,  "enter displayentries 1st entry:"+entries.get(0).title);
+        Log.d(MYTAG,  "enter displayentries 1st entry:"+entries.get(0).title);
         ClassMenuFragment menuFragment = new ClassMenuFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
@@ -111,8 +118,6 @@ public class CancelledClassessActivity extends OptionsMenu implements ClassMenuF
                     .commit();
         }
     }
-
-
 	
 	
     private class DownloadXmlTask extends AsyncTask<String, Void, String> {
@@ -154,6 +159,7 @@ public class CancelledClassessActivity extends OptionsMenu implements ClassMenuF
             }
 
             Log.d(MYTAG, "size: " + entries.size());
+            Log.d(MYTAG, "content: " + entries.get(0).teacher);
 
             return null;
         }

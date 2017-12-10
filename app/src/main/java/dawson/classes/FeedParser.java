@@ -1,5 +1,6 @@
 package dawson.classes;
 
+import android.util.Log;
 import android.util.Xml;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -7,10 +8,17 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
+import java.util.ArrayL ist;
 import java.util.List;
 
+
+/**
+ * Used parsing the RSS Feed for the cancelled classes.
+ * @author Isaak
+ */
 public class FeedParser{
+	
+        private final String TAG = "FeedParser";
     // don't use namespaces
     private static final String ns = null;
 
@@ -42,6 +50,7 @@ public class FeedParser{
                 skip(parser);
             }
         }
+        Log.d(TAG, "PARSING NOW");
         return entries;
     }
 
@@ -71,7 +80,7 @@ public class FeedParser{
                 case "course":
                     course = readCourse(parser);
                     break;
-                case "classes":
+                case "teacher":
                     teacher = readTeacher(parser);
                     break;
                 case "notes":
@@ -114,9 +123,9 @@ public class FeedParser{
 
     // Processes teacher tags in the feed.
     private String readTeacher(XmlPullParser parser) throws IOException, XmlPullParserException {
-        parser.require(XmlPullParser.START_TAG, ns, "classes");
+        parser.require(XmlPullParser.START_TAG, ns, "teacher");
         String teacher = readText(parser);
-        parser.require(XmlPullParser.END_TAG, ns, "classes");
+        parser.require(XmlPullParser.END_TAG, ns, "teacher");
         return teacher;
     }
 

@@ -24,8 +24,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class FindFriendsActivity extends OptionsMenu {
 
+/**
+ * Activity for displaying the friends that are found through the API
+ * @author Theo
+ */
+public class FindFriendsActivity extends OptionsMenu {
+	  private final String TAG = "FindFriendsActivity";
     ListView friendsListView;
     TextView friendsTitleTV;
     ArrayList<String> friendNames;

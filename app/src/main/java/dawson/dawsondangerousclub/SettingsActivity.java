@@ -17,6 +17,11 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
+
+/**
+ * Settings Activity launched from the options menu
+ * @author Jacob, Isaak, Theo
+ */
 public class SettingsActivity extends OptionsMenu {
 
     private EditText firstName;
