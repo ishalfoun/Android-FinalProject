@@ -35,5 +35,4 @@
         app:backgroundTint="@color/black"
         app:srcCompat="@android:drawable/ic_input_add" />
 
-
 </LinearLayout>

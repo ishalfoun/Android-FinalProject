@@ -10,9 +10,9 @@
     <string name="theo">Theodore Acco - Thomas</string>
     <string name="course_id">420-518-DW &amp; 420-524-DW</string>
     <string name="about_me_dialog">About</string>
-    <string name="about_me_issak">Grad Dawson CS 2017 Issak</string>
-    <string name="about_me_jacob">Grad Dawson CS 2017 Jacob</string>
-    <string name="about_me_theo">Grad Dawson CS 2017 Theo</string>
+    <string name="about_me_issak">Isaak is a Dawson Computer Science Grad of 2017. He enjoys programming algorithms.</string>
+    <string name="about_me_jacob">Jacob is a Dawson Computer Science Grad of 2017. He likes building things.</string>
+    <string name="about_me_theo">Theo is a Dawson Computer Science Grad of 2017. He likes solving puzzles.</string>
 
     <string name="page_title">Cancelled Classes</string>
     <string name="updated">Updated</string>
