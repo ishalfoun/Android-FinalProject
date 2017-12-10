@@ -102,7 +102,7 @@ public class FindFriendsActivity extends OptionsMenu {
                     friendEmails.add(nameAndEmail[1]);
                 }
 
-                //friendsTitleTV.setText(result);
+                friendsTitleTV.setText(getResources().getString(R.string.my_friends));
                 friendsListView.setAdapter(new ArrayAdapter<String>(getApplicationContext(), R.layout.friends_list, R.id.friendTV, friendNames));
             }
 

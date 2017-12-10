@@ -16,7 +16,7 @@
         android:id="@+id/findFriendsTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/my_friends"
+        android:text="@string/loading"
         android:gravity="center"
         android:textColor="@color/black"
         android:textSize="30sp"/>
