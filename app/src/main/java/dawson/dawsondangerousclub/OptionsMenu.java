@@ -6,6 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+
+/**
+ * Pop up menu displayed on the top corner of each activity
+ * @author Jacob, Isaak, Theo
+ */
 public class OptionsMenu extends AppCompatActivity {
 
 

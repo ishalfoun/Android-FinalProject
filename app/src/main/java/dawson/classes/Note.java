@@ -1,7 +1,8 @@
 package dawson.classes;
 
 /**
- * Created by 1537385 on 11/20/2017.
+ * Bean used for Notes.
+ * @author Jacob
  */
 public class Note {
     private int id;

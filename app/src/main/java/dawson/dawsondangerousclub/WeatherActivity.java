@@ -44,7 +44,13 @@ import java.util.Date;
 import java.util.List;
 
 
+/**
+ * Activity for displaying the weather
+ * @author Theo
+ */
+
 public class WeatherActivity extends OptionsMenu {
+	private final String TAG = "WeatherActivity";
 
     EditText cityInput;
     Spinner countrySelector;

@@ -9,7 +9,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+/**
+ *  Activity displayed when selecting 'About' from the options menu
+ *  Displays information about the app and the developers.
+ *  @author Isaak, Theodore 
+ */
 public class AboutActivity extends OptionsMenu {
+	private final String TAG = "AboutActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

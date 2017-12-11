@@ -13,10 +13,15 @@ import android.os.IBinder;
 import android.provider.Settings;
 import android.widget.Toast;
 
+/**
+ * Service for tracking GPS. Used for the weather.
+ * @author Theo
+ */
 
 public class GPSTracker extends Service implements LocationListener {
 
     private final Context mContext;
+    private final String TAG = "GPSTracker";
 
     boolean isGPSEnabled = false;
     boolean isNetworkEnabled = false;

@@ -19,9 +19,13 @@ import dawson.dawsondangerousclub.FindTeacherActivity;
 import dawson.dawsondangerousclub.R;
 
 
+/**
+ * Fragment for displaying the details about each class.
+ * @author Isaak
+ */
 public class ClassDetailFragment extends Fragment {
     int position = 0;
-	final static String MYTAG = "MYTAG";
+	final static String MYTAG = "ClassDetailFragment";
     TextView tvClassTitle;
     TextView tvClassDescription;
     TextView tvClassName;

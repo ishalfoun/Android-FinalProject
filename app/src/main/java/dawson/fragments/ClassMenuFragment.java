@@ -16,7 +16,12 @@ import dawson.classes.ClassesAdapter;
 import dawson.classes.Entry;
 import dawson.dawsondangerousclub.R;
 
+/**
+ * Fragment for displaying the list of cancelled classes.
+ * @author Isaak
+ */
 public class ClassMenuFragment extends Fragment {
+	final static String TAG = "ClassMenuFragment";
 
     ClassesAdapter adapter;
     String [] listClassTitle;
@@ -40,7 +45,7 @@ public class ClassMenuFragment extends Fragment {
             }
         }
 
-        Log.d("MYTAG",  "got the entries in menufrag: "+ (entries != null ? entries.get(0).title : "empty"));
+        Log.d(TAG,  "got the entries in menufrag: "+ (entries != null ? entries.get(0).title : "empty"));
         adapter = new ClassesAdapter(getContext(), entries, listener);
     }
 
